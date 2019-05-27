@@ -10,6 +10,6 @@ public interface Util {
 	int INGREDIENT_SHOWALL = 5;
 	int INGREDIENT_SHUTDOWN = 6;
 	
-	//결제내역 관련
+	//결제내역 관련 주석으로 테스트중입니다 아아아 
 	
 }
