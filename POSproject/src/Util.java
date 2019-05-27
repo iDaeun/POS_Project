@@ -9,4 +9,6 @@ public interface Util {
 	int INGREDIENT_DELETE = 4;
 	int INGREDIENT_SHOWALL = 5;
 	int INGREDIENT_SHUTDOWN = 6;
+	
+	Guest[] TABLE = new Guest[3];
 }

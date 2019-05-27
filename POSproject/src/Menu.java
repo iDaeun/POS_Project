@@ -1,5 +1,5 @@
 
 public interface Menu {
-	int kimbab = 1;
-	int tunakimbab = 2;
+	int KIMBAB = 1;
+	int TUNAKIMBAB = 2;
 }

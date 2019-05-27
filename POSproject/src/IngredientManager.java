@@ -11,7 +11,7 @@ public class IngredientManager {
 		ingredientList.add(new IngredientInfo("김", 10, 100));
 		ingredientList.add(new IngredientInfo("쌀", 10, 100));
 		ingredientList.add(new IngredientInfo("단무지", 10, 100));
-
+		ingredientList.add(new IngredientInfo("참치", 10, 100));
 
 	}
 
