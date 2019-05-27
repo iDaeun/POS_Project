@@ -1,7 +1,8 @@
 
 
-import Util;
 import java.util.ArrayList;
+
+import util.Util;
 
 public class SupplierManager {
 	// 거래처 관리 클래스
@@ -128,9 +129,17 @@ public class SupplierManager {
 		System.out.println("발주할 재료의 이름을 입력하세요");
 		
 		String name = Util.sc.nextLine();
+		int num = 0;
 		
 		for(int i=0;i<IngredientManager.ingredientList.size();i++) {
-			
+			if(name.equals(IngredientManager.ingredientList.get(i).getName())) {
+				System.out.println("주문 수량을 입력하세요.");
+				num = Util.sc.nextInt();
+				num +=IngredientManager.ingredientList.get(i).getNum();
+				System.out.println("발주를 완료했습니다.");
+			} else {
+				System.out.println("재료가 일치하지 않습니다.");
+			}
 		}
 //		for(int i=0;i<bi.size();i++) {			
 //			if(name == bi.get(i).name) {
