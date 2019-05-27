@@ -50,7 +50,12 @@ public class IngredientInfo {
 			System.out.println("현재 수량: "+num);
 			System.out.println(minNum-num+"개 부족!");
 			
-			////거래처관리 for문 -> equals(name) -> 거래처 showInfo
+			////거래처관리 for문 -> equals(name) -> 거래처 showData
+			for(int i=0; i<SupplierManager.si.size(); i++) {
+				if(SupplierManager.si.get(i).getIngre().equals(name)) {
+					SupplierManager.si.get(i).showData();
+				}
+			}
 		}
 	}
 	
