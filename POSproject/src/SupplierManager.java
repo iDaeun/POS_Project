@@ -8,7 +8,7 @@ public class SupplierManager {
 	// 거래처 관리 클래스
 	// 거래처 관리 기능 모음
 
-	ArrayList<SupplierBasicInfo> si = new ArrayList<SupplierBasicInfo>();
+	public static ArrayList<SupplierBasicInfo> si = new ArrayList<SupplierBasicInfo>();
 	
 	
 	// 포스 메인에서 불러와야 하기 때문에 public이어야함.
@@ -141,6 +141,9 @@ public class SupplierManager {
 				System.out.println("재료가 일치하지 않습니다.");
 			}
 		}
+		
+		
+		
 //		for(int i=0;i<bi.size();i++) {			
 //			if(name == bi.get(i).name) {
 //				System.out.println("구매할 수량을 입력하세요.");
