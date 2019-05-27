@@ -24,7 +24,6 @@ public class HistoryMainTest {
 			int choice = hm.printMenu();
 
 			switch (choice) {
-			//임폴트하면 간단히 쓸수있고 안하면 풀네임 써야함
 			case 1:
 				hm.showTodayHistory();
 				break;
@@ -33,6 +32,7 @@ public class HistoryMainTest {
 				break;
 			case 3:
 				System.out.println("월별 결제내역");
+				hm.showMonthHistory();
 				break;
 			case 4:
 				hm.showMemberHistory();
