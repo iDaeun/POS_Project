@@ -9,4 +9,7 @@ public interface Util {
 	int INGREDIENT_DELETE = 4;
 	int INGREDIENT_SHOWALL = 5;
 	int INGREDIENT_SHUTDOWN = 6;
+	
+	//결제내역 관련
+	
 }
