@@ -29,11 +29,11 @@ public class SupplierBasicInfo extends BuyIngredient{
 	}
 	
 	// 거래처 이름
-	protected String getName() {
+	String getName() {
 		return this.name;
 	}
 	
-	protected String getIngre() {
+	String getIngre() {
 		return this.addIngre;
 	}
 	
