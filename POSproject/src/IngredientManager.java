@@ -13,7 +13,11 @@ public class IngredientManager {
 		ingredientList.add(new IngredientInfo("단무지", 10, 100));
 		ingredientList.add(new IngredientInfo("참치", 10, 100));
 
-
+		
+		Member kim = new Member("김","1111-1111");
+		MemberManager.getManager().getHashSet().add(kim);
+		
+		
 	}
 
 	// 재고관리 메뉴 출력

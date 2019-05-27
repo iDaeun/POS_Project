@@ -20,6 +20,9 @@ public class testMyPOS implements Util {
 			case 2:
 				sm.selectSellMenu();
 				break;
+			case 3:
+				MemberManager.getManager().showAll();
+				break;
 			default:
 				System.out.println("올바르게 입력해\n");
 				break;

@@ -154,6 +154,15 @@ public class SellManager implements Util, Menu {
 		if (select < TABLE.length + 1 && select > 0) {
 			System.out.println(select + "번 테이블");
 			System.out.println("결제 금액 : " + TABLE[select - 1].getTotalPrice());
+			
+			System.out.println("회원이야?");
+			System.out.println("1. 응, 2. 아니");
+			select = sc.nextInt();
+			
+			if(select == 1) {
+				System.out.println("이름이 뭔데?");
+			}
+			
 			MyPOS.money += TABLE[select - 1].getTotalPrice();
 			System.out.println("잔고 : " + MyPOS.money);
 			TABLE[select - 1] = null;
