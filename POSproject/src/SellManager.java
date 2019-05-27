@@ -157,6 +157,9 @@ public class SellManager implements Util, Menu {
 			MyPOS.money += TABLE[select - 1].getTotalPrice();
 			System.out.println("잔고 : " + MyPOS.money);
 			TABLE[select - 1] = null;
+
+			// History history = new History(TABLE[select - 1].payNum, payTime, payItem,
+			// TABLE[select - 1]., payAmount, memberId)
 		} else {
 			System.out.println("올바른 테이블 번호를 입력해.");
 		}
