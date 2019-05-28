@@ -5,17 +5,65 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 public class History {
-	int payNum;
-	LocalDateTime payTime;
-	String payItem;
-	int payEa;
-	long payAmount;
-	String memberId;
+	private int payNum;
+	private LocalDateTime payTime;
+	private String payItem;
+	private int payEa;
+	private long payAmount;
+	private String memberId;
 	
 	DateTimeFormatter f1 = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 	DateTimeFormatter f2 = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
 	
 	
+	public int getPayNum() {
+		return payNum;
+	}
+
+	public void setPayNum(int payNum) {
+		this.payNum = payNum;
+	}
+
+	public LocalDateTime getPayTime() {
+		return payTime;
+	}
+
+	public void setPayTime(LocalDateTime payTime) {
+		this.payTime = payTime;
+	}
+
+	public String getPayItem() {
+		return payItem;
+	}
+
+	public void setPayItem(String payItem) {
+		this.payItem = payItem;
+	}
+
+	public int getPayEa() {
+		return payEa;
+	}
+
+	public void setPayEa(int payEa) {
+		this.payEa = payEa;
+	}
+
+	public long getPayAmount() {
+		return payAmount;
+	}
+
+	public void setPayAmount(long payAmount) {
+		this.payAmount = payAmount;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
 	public History(int payNum, LocalDateTime payTime, String payItem, int payEa, long payAmount, String memberId) {
 		this.payNum = payNum;	//결제번호
 		this.payTime = payTime;	//결제시각

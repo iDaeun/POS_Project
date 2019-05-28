@@ -40,6 +40,9 @@ public class HistoryMainTest {
 			case 5:
 				hm.showHistoryAll();
 				break;
+			case 6:
+				hm.historyToDate();
+				break;
 
 			default:
 				break;

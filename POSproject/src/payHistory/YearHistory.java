@@ -4,11 +4,11 @@ package payHistory;
 public class YearHistory {
 
 	String year;
-	MonthHistory[] oneYearHistory = new MonthHistory[12];
+	MonthHistory[] monthHistoryArr = new MonthHistory[12];
 	
-	public YearHistory(String year, MonthHistory[] oneYearHistory) {
+	public YearHistory(String year, MonthHistory[] monthHistoryArr) {
 		this.year = year;
-		this.oneYearHistory = oneYearHistory;
+		this.monthHistoryArr = monthHistoryArr;
 	}
 	
 

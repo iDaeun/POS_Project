@@ -7,8 +7,9 @@ public class DateHistory {
 	String date;
 	ArrayList<Product> product = new ArrayList<Product>();
 
-	public DateHistory(String date, ArrayList<Product> product) {
+	public DateHistory(String date, Product product) {
 		this.date = date;
-		this.product = product;
+		this.product.add(product);
 	}
+	
 }
