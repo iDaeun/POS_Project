@@ -1,26 +1,30 @@
+public class MenuIngredient {
 
-public class Kimbab {
+	String name;
+	int price;
+	int cnt;
 
-	String kim = "김";
-	String rice = "쌀";
-	protected String name;
-	
-	protected int price;
-	protected int cnt;
-	
-
-	Kimbab() {
-		name = "김밥";
-		price = 3000;
-		cnt = 0;
-	}
-	
+	// 메뉴명을 조회하므로 매개변수필요x
 	public String getName() {
 		return name;
 	}
 
+	// 메뉴이름 변경
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getPrice() {
 		return price;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+
 	}
 
 	public int getCnt() {
@@ -28,7 +32,7 @@ public class Kimbab {
 	}
 
 	public void ingredientMinus() {
-		
+
 		int index1 = IngredientManager.searchIndex("김");
 
 		IngredientManager.ingredientList.get(index1).setNum(IngredientManager.ingredientList.get(index1).getNum() - 1);
@@ -40,11 +44,21 @@ public class Kimbab {
 		int index3 = IngredientManager.searchIndex("단무지");
 
 		IngredientManager.ingredientList.get(index3).setNum(IngredientManager.ingredientList.get(index3).getNum() - 1);
-	
+
 		cnt++;
 	}
-	
-	public void info( ) {
+
+	/*
+	 * public String toString() { return String.format("%s %d", name,price); }
+	 */
+
+	void showInfo() {
+		System.out.println("메뉴 이름 : " + name);
+		System.out.println("메뉴 가격 : " + price);
+		for (int i = 0; i < 3; i++) {
+			IngredientManager.ingredientList.get(i).showInfo();
+		}
+		
 	}
 
 }
