@@ -7,9 +7,9 @@ public class Guest {
 	int totalPrice;
 	String foodname;
 
-	ArrayList<Kimbab> order;
+	ArrayList<Menu> order;
 
-	Guest(ArrayList<Kimbab> orderList) {
+	Guest(ArrayList<Menu> orderList) {
 		payNum = payTotalNum;
 		++payTotalNum;
 

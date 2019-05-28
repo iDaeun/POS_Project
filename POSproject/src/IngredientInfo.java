@@ -11,6 +11,10 @@ public class IngredientInfo {
 		this.num = num;
 	}
 
+	public IngredientInfo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -38,17 +42,26 @@ public class IngredientInfo {
 	//개별 매뉴 현황 출력
 	void showInfo() {
 		System.out.println("======================");
-		System.out.printf("재료 이름:\t%s\n재료 현재수량:\t%s\n",name,num);
-		System.out.println("재료 최소수량:\t"+minNum);
+		System.out.printf("재료 이름: %s\n재료 현재수량: %s\n",name,num);
+		System.out.println("재료 최소수량: "+minNum);
 		System.out.println("======================");
 	}
 	
 	//재고가 최소수량이하로 떨어졌을시 -> '재고부족'알람
 	void alarm() {
 		if(this.num<this.minNum) {
+			System.out.println("-----------------------");
 			System.out.println("*["+name+"]재고부족*, 발주가 필요합니다.");
 			System.out.println("현재 수량: "+num);
-			System.out.println("약"+(1-num/minNum)*100+"% 부족!");
+			System.out.println(minNum-num+"개 부족!");
+			System.out.println("-----------------------");
+			
+			////거래처관리 for문 -> equals(name) -> 거래처 showData
+			for(int i=0; i<SupplierManager.si.size(); i++) {
+				if(SupplierManager.si.get(i).getIngName().equals(name)) {
+					SupplierManager.si.get(i).showData();
+				}
+			}
 		}
 	}
 	

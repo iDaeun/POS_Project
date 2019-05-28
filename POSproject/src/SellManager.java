@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 import javax.swing.event.MenuListener;
 
-public class SellManager implements Util, Menu {
+public class SellManager implements Util {
 	// 판매관리
 	// 1. 주문
 	// 주문을 하면 손님 객체를 생성하고 배열에 삽입.
@@ -17,10 +17,10 @@ public class SellManager implements Util, Menu {
 
 	int select; // 입력값을 받을 변수.
 
-	Kimbab k;
+	Menu m;
 
 	// 장바구니 역할
-	ArrayList<Kimbab> orderList = new ArrayList<Kimbab>();
+	ArrayList<Menu> orderList = new ArrayList<Menu>();
 
 	// 테이블에 빈 자리가 있는지 확인하는 변수
 	boolean check = false;
@@ -38,7 +38,7 @@ public class SellManager implements Util, Menu {
 			case 1:
 
 				// 주문을 하기 전 자리 확인.
-				if (check() == false) {
+				if (selectTable() == false) {
 					System.out.println("자리가 없어.");
 				} else {
 					order();
@@ -65,37 +65,24 @@ public class SellManager implements Util, Menu {
 
 	// 주문 받는 메서드.
 	void order() {
-
+		int i;
 		// 추가 주문을 하면 계속해서 반복함.
 		do {
 			System.out.println("-----메뉴-----");
-			for (int i = 0; i < MenuManager.MenuList.size(); i++) {
-				System.out.print(i + 1 + ". " + MenuManager.MenuList.get(i).getName());
+			for (i = 0; i < MenuManager.MenuList.size(); i++) {
+				System.out.print(i + 1 + ". " + MenuManager.MenuList.get(i).getName() + " ");
 			}
+			System.out.println();
 
 			select = sc.nextInt();
-			switch (select) { // 메뉴판이 완성되면.. if문 써야할듯..
-			case KIMBAB:
-				k = new Kimbab();
-				check = whatOrderNum(k);
-				orderList.add(k);
-				break;
 
-			case TUNAKIMBAB:
-				k = new TunaKimbab();
-				check = whatOrderNum(k);
-				orderList.add(k);
+			m = MenuManager.MenuList.get(select - 1);
+			check = whatOrderNum(m);
 
-				break;
-			case 3:
-
-			case 4:
-				return;
-			}
+			orderList.add(m);
 
 		} while (check == false);
 		addTable();
-		return;
 	}
 
 	// 테이블이 비어있으면 손님 객체를 생성하고 배열에추가하는 메서드.
@@ -104,7 +91,7 @@ public class SellManager implements Util, Menu {
 			if (TABLE[i] == null) {
 				TABLE[i] = new Guest(orderList);
 
-				orderList = new ArrayList<Kimbab>();
+				orderList = new ArrayList<Menu>();
 				return;
 
 			}
@@ -113,7 +100,7 @@ public class SellManager implements Util, Menu {
 	}
 
 	// 빈 자리를 찾는 메서드
-	boolean check() {
+	boolean selectTable() {
 		boolean c = false;
 		for (int i = 0; i < TABLE.length; i++) {
 			if (TABLE[i] == null) {
@@ -125,7 +112,7 @@ public class SellManager implements Util, Menu {
 
 	// 주문 메서드
 	// 다른 메뉴도 주문할 때 false 값을 반환.
-	boolean whatOrderNum(Kimbab k) {
+	boolean whatOrderNum(Menu m) {
 		boolean addOrder = false;
 		System.out.println("몇 개 주문해 ?");
 		select = sc.nextInt();
@@ -137,8 +124,7 @@ public class SellManager implements Util, Menu {
 		else {
 
 			for (int i = 0; i < select; i++) {
-
-				k.ingredientMinus();
+				m.ingredientMinus();
 
 			}
 		}
@@ -164,11 +150,9 @@ public class SellManager implements Util, Menu {
 	void pay() {
 		System.out.println("몇 번 테이블 계산 할거야?");
 		select = sc.nextInt();
-		check();
-		if (check() == true) {
-			System.out.println("결제할 테이블이 없어.");
-			return;
-		}
+		/*
+		 * if (selectTable() == false) { System.out.println("결제할 테이블이 없어."); return; }
+		 */
 
 		if (select < TABLE.length + 1 && select > 0) {
 			System.out.println(select + "번 테이블");
@@ -185,6 +169,7 @@ public class SellManager implements Util, Menu {
 				PointManager.getManager().addPoint(TABLE[select - 1].getTotalPrice());
 				break;
 			case 2:
+
 				break;
 			}
 

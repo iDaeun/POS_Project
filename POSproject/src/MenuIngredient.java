@@ -1,21 +1,8 @@
-
-public class MenuInfo {
+public class MenuIngredient {
 
 	String name;
-
-	protected int price;
-	protected int cnt;
-
-	public MenuInfo(String name, int price) {
-
-		this.name = name;
-		this.price = price;
-		cnt = 0;
-	}
-
-	public MenuInfo(String name) {
-		this.name = name;
-	}
+	int price;
+	int cnt;
 
 	// 메뉴명을 조회하므로 매개변수필요x
 	public String getName() {
@@ -36,6 +23,10 @@ public class MenuInfo {
 
 	}
 
+	public int getCnt() {
+		return cnt;
+	}
+
 	public void ingredientMinus() {
 
 		int index1 = IngredientManager.searchIndex("김");
@@ -53,10 +44,17 @@ public class MenuInfo {
 		cnt++;
 	}
 
-	void showInfo() {
+	/*
+	 * public String toString() { return String.format("%s %d", name,price); }
+	 */
 
-		System.out.println("메뉴이름 :" + name);
-		System.out.println("메뉴가격 :" + price);
+	void showInfo() {
+		System.out.println("메뉴 이름 : " + name);
+		System.out.println("메뉴 가격 : " + price);
+		for (int i = 0; i < 3; i++) {
+			IngredientManager.ingredientList.get(i).showInfo();
+		}
+		
 	}
 
 }

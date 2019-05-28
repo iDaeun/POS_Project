@@ -1,22 +1,36 @@
-
 import java.util.ArrayList;
-
-import java.util.Scanner;
 
 public class MenuManager {
 
-	static ArrayList<MenuInfo> MenuList = new ArrayList<MenuInfo>();
+	static ArrayList<Menu> MenuList = new ArrayList<Menu>();
+
+	public MenuManager() {
+		IngredientInfo ingre1 = new IngredientInfo("야채", 10, 2);
+		IngredientManager.ingredientList.add(ingre1);
+		Menu kimbab1 = new Menu("야채김밥", 3000, ingre1);
+
+		IngredientInfo ingre2 = new IngredientInfo("참치", 10, 2);
+		IngredientManager.ingredientList.add(ingre2);
+		Menu kimbab2 = new Menu("참치김밥", 3500, ingre2);
+
+		MenuList.add(kimbab1);
+		MenuList.add(kimbab2);
+	}
 
 	// 메뉴관리 선택
-	void printmenu() {
+	void printMenu() {
 
 		while (true) {
 
 			System.out.println("=============================");
 			System.out.println(" 1.메뉴 추가\n 2.메뉴 수정\n 3.메뉴 삭제\n 4.전체 메뉴 출력\n 5.종료");
-			System.out.println("원하는 메뉴를 선택해주세요.");
+			System.out.println("=============================");
+			System.out.println("원하는 메뉴를 선택해주세요 : ");
 
 			int choice = Util.sc.nextInt();
+			Util.sc.nextLine();
+			System.out.println();
+
 			switch (choice) {
 
 			case 1:
@@ -46,14 +60,14 @@ public class MenuManager {
 	}
 
 	// 메뉴를 배열에 저장!!!!!!!!!!!!!!!!!!!
-	public void firstAdd(MenuInfo name) {
+	public void firstAdd(Menu name) {
 		MenuList.add(name);
 	}
 
 	// 검색할 메뉴의 이름을 출력!!!!!!!!!!!!!
 	public void searchPrint() {
-		String name = Util.sc.nextLine();
 		System.out.println("검색할 메뉴를 입력해주세요");
+		String name = Util.sc.nextLine();
 
 		int index = searchIndex(name);
 
@@ -77,22 +91,20 @@ public class MenuManager {
 	}
 
 	// 메뉴이름등록!!!!!!!!!!!!!!!!!!!!!!!
-	void insertMenu() {
-		Util.sc.nextLine();
-		String name = Util.sc.nextLine();
-		System.out.println("메뉴이름 :");
-		int price = Util.sc.nextInt();
-		System.out.println("메뉴가격 :");
-
-		MenuList.add(new MenuInfo(name, price));
-		System.out.println("메뉴가 등록되었습니다.");
-
-	}
+	/*
+	 * void insertMenu() {
+	 * 
+	 * System.out.println("메뉴이름 :"); String name = Util.sc.nextLine();
+	 * System.out.println("메뉴가격 :"); int price = Util.sc.nextInt();
+	 * 
+	 * MenuList.add(new Menu(name, price)); System.out.println("메뉴가 등록되었습니다.");
+	 * 
+	 * }
+	 */
 
 	// 신메뉴 추가 메서드!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	void menuAdd() {
-		Util.sc.nextLine();
 		System.out.println("추가할 메뉴의 이름을 입력하세요 : ");
 		String name = Util.sc.nextLine();
 
@@ -108,13 +120,13 @@ public class MenuManager {
 			System.out.println("새로운 메뉴이름: " + name);
 			System.out.println("가격 :" + price);
 
-		MenuList.add(new MenuInfo(name, price));
-		
-		for(int i = 0; i < MenuList.size(); i++) {
-			if(MenuList.get(i).getName().equals(name));
+			Util.sc.nextLine();
+			IngredientInfo ingredientInfo = IngredientManager.add();
+
+			MenuList.add(new Menu(name, price, ingredientInfo));
+			System.out.printf("%d원인 %s메뉴가 추가되었습니다.\n", price, name);
 		}
-		System.out.printf("%d원인 %s메뉴가 추가되었습니다.", price, name);
-		}
+
 	}
 
 	// 메뉴 수정 메서드!!!!!!!!!!!!!!
@@ -136,7 +148,7 @@ public class MenuManager {
 			System.out.println("수정이 완료되었습니다.");
 
 			MenuList.remove(index);
-			MenuList.add(index, new MenuInfo(name, price));
+			MenuList.add(index, new Menu(name, price));
 		}
 
 	}

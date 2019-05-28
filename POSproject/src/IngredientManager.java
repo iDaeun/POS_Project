@@ -2,22 +2,15 @@ import java.util.*;
 
 public class IngredientManager {
 	// 재료 -> ArrayList배열에 추가
-	protected static ArrayList<IngredientInfo> ingredientList;
+	static ArrayList<IngredientInfo> ingredientList = new ArrayList<IngredientInfo>();
 
 	public IngredientManager() {
 		// IngredientManager생성시 재료배열 자동 생성 & 재고관리 매뉴 출력 기능 실행
-		ingredientList = new ArrayList<IngredientInfo>();
-
-		ingredientList.add(new IngredientInfo("김", 10, 100));
+		ingredientList.add(new IngredientInfo("김", 10, 9));
 		ingredientList.add(new IngredientInfo("쌀", 10, 100));
 		ingredientList.add(new IngredientInfo("단무지", 10, 100));
-		ingredientList.add(new IngredientInfo("참치", 10, 100));
 
-		
-		Member kim = new Member("김","1111-1111");
-		MemberManager.getManager().getHashSet().add(kim);
-		
-		
+
 	}
 
 	// 재고관리 메뉴 출력
@@ -26,8 +19,16 @@ public class IngredientManager {
 		while (true) {
 
 			int choice = 0;
-
-			System.out.println("\n1.재료검색|2.재료추가|3.재료정보수정|4.재료삭제|5.재료전체출력|6.이전메뉴");
+			
+			System.out.println();
+			System.out.println(
+					Util.INGREDIENT_SHOWINFO+".재료검색|"+
+					Util.INGREDIENT_EDIT+".재료수정|"+
+					Util.INGREDIENT_DELETE+".재료삭제|"+
+					Util.INGREDIENT_SHOWALL+".재료전체출력|"+
+					Util.INGREDIENT_SHUTDOWN+".이전메뉴"
+					);
+			
 			System.out.print("원하시는 메뉴를 선택해주세요: ");
 
 			choice = Util.sc.nextInt();
@@ -38,10 +39,6 @@ public class IngredientManager {
 
 			case Util.INGREDIENT_SHOWINFO:
 				showInfo();
-				break;
-
-			case Util.INGREDIENT_ADD:
-				add();
 				break;
 
 			case Util.INGREDIENT_EDIT:
@@ -95,9 +92,11 @@ public class IngredientManager {
 	}
 
 	// 재료추가
-	void add() {
+	static IngredientInfo add() {
+		
+		IngredientInfo ingredientInfo = new IngredientInfo();
 
-		System.out.print("[추가]이름: ");
+		System.out.print("[추가]재료 이름: ");
 		String name = Util.sc.nextLine();
 
 		int index = searchIndex(name);
@@ -111,8 +110,14 @@ public class IngredientManager {
 			int minNum = Util.sc.nextInt();
 
 			ingredientList.add(new IngredientInfo(name, minNum, num));
+			int i = searchIndex(name);
+			//int i = ingredientList.indexOf(ingredientList.);
+			System.out.println(i);
+			ingredientInfo = ingredientList.get(i);
 			System.out.println("추가되었습니다!");
 		}
+		
+		return ingredientInfo;
 	}
 
 	// 재료정보수정

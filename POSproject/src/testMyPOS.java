@@ -22,7 +22,7 @@ public class testMyPOS implements Util {
 				sm.selectSellMenu();
 				break;
 			case 3:
-				mm1.printmenu();
+				mm1.printMenu();
 				break;
 			case 4:
 				mm2.printMenu();
