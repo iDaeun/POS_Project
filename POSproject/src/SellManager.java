@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.swing.event.MenuListener;
+
 public class SellManager implements Util, Menu {
 	// 판매관리
 	// 1. 주문
@@ -63,11 +65,14 @@ public class SellManager implements Util, Menu {
 
 	// 주문 받는 메서드.
 	void order() {
-		
+
 		// 추가 주문을 하면 계속해서 반복함.
 		do {
 			System.out.println("-----메뉴-----");
-			System.out.println("1. 김밥 | 2. 참치김밥 | 3. 주문 | 4. 취소"); // 메뉴판이 완성되면 sysout이 아닌 메뉴판의 내용을 출력하는 메서드를 사용.
+			for (int i = 0; i < MenuManager.MenuList.size(); i++) {
+				System.out.print(i + 1 + ". " + MenuManager.MenuList.get(i).getName());
+			}
+
 			select = sc.nextInt();
 			switch (select) { // 메뉴판이 완성되면.. if문 써야할듯..
 			case KIMBAB:
