@@ -21,17 +21,41 @@ public class SupplierBasicInfo extends BuyIngredient{
 	
 	public SupplierBasicInfo() {};
 	
+	@Override
+	public boolean equals(Object obj) {
+		
+
+		if(obj != null) {
+			return true; 
+		}
+		
+		SupplierBasicInfo sbi = (SupplierBasicInfo)obj;
+		
+		
+		if(obj != null && sbi.phoneNum == obj) {
+			return true;
+		}
+		
+		if(obj != null && sbi.ingName == obj) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return phoneNum.hashCode();
+	}
+	
+	
+	
 	void showData(){
 		System.out.println("거래처 이름: "+name);
 		System.out.println("거래처 번호: "+phoneNum);
 		System.out.println("거래처 주소: "+address);
 		System.out.println("거래처 품목: "+ingName);
 	}
-	
-	
-
-	
-	
-
 	
 }

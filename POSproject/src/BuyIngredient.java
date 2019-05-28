@@ -12,6 +12,7 @@ public class BuyIngredient{
 		ingPrice = price;
 	}
 	
+	// 
 	void setIngName(String name) {
 		ingName = name;
 	}
@@ -37,17 +38,5 @@ public class BuyIngredient{
 	}
 	
 	
-	// 알림창에서 구입하는 메소드.
-	IngredientInfo inginfo = new IngredientInfo();
-	
-	void buying(int num) {	
-		int numOfIng = inginfo.getNum();		
-		numOfIng += num;
-		
-		MyPOS.money -= (num * ingPrice);
-	}
-	
-	
-	
-	
+
 }
