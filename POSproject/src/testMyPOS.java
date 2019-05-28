@@ -4,6 +4,7 @@ public class testMyPOS implements Util {
 	static IngredientManager im = new IngredientManager();
 	static SellManager sm = new SellManager();
 	static SupplierManager supm = new SupplierManager();
+	static MenuManager mm = new MenuManager();
 
 	public static void main(String[] args) {
 
@@ -13,7 +14,7 @@ public class testMyPOS implements Util {
 			}
 
 			System.out.println("POS");
-			System.out.println("1.재고 |2.판매 |3.거래처");
+			System.out.println("1.재고 |2.판매 |3.거래처 |4.메뉴");
 
 			int select = sc.nextInt();
 
@@ -29,6 +30,9 @@ public class testMyPOS implements Util {
 				supm.printMenu();
 				break;
 				
+			case 4:
+				mm.MenuManage();
+				break;
 				
 			default:
 				System.out.println("올바르게 입력해\n");

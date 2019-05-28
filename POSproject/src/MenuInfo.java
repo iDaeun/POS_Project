@@ -51,6 +51,10 @@ public class MenuInfo {
     System.out.println("메뉴이름 :"+name);
     System.out.println("메뉴가격 :"+price);
     System.out.println("사용되는 재료) ");
+    
+//    //김, 단무지, 쌀  => 기본재료 -> 추가재료 보여주기 전 항상 뜨도록 함
+//    IngredientManager.ingredientList
+    
     this.info.showInfo();
    }
 

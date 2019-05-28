@@ -111,7 +111,6 @@ public class IngredientManager {
 
 			ingredientList.add(new IngredientInfo(name, minNum, num));
 			int i = searchIndex(name);
-			//int i = ingredientList.indexOf(ingredientList.);
 			System.out.println(i);
 			ingredientInfo = ingredientList.get(i);
 			System.out.println("추가되었습니다!");

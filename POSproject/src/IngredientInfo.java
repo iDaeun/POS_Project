@@ -3,6 +3,7 @@ public class IngredientInfo {
 	private String name; //재료 이름
 	private int num; //재료 현재 수량
 	private int minNum; //재료 최소 필요 수량
+	
 
 	
 	public IngredientInfo(String name, int minNum, int num) {
@@ -51,8 +52,8 @@ public class IngredientInfo {
 		if(this.num<this.minNum) {
 			System.out.println("-----------------------");
 			System.out.println("*["+name+"]재고부족*, 발주가 필요합니다.");
-			System.out.println("현재 수량: "+num);
-			System.out.println(minNum-num+"개 부족!");
+			System.out.print("현재 수량: "+num);
+			System.out.println(" ("+(minNum-num)+"개 부족)");
 			
 			////거래처관리 for문 -> equals(name) -> 거래처 showData
 			for(int i=0; i<SupplierManager.si.size(); i++) {

@@ -5,6 +5,12 @@ import java.util.Scanner;
 public class MenuManager {
 
    ArrayList<MenuInfo> MenuList = new ArrayList<MenuInfo>();
+   
+   public MenuManager() {
+		firstAdd(new MenuInfo("야채김밥", 3000, new IngredientInfo("야채", 5,5)));
+		firstAdd(new MenuInfo("참치김밥", 2000, new IngredientInfo("참치", 5,5)));
+		firstAdd(new MenuInfo("치즈김밥", 3000, new IngredientInfo("치즈", 5,5)));
+}
 
    
    //메뉴관리 선택
@@ -180,19 +186,16 @@ public class MenuManager {
 
    
  // 배열에 저장된 모든 데이터를 출력!!
-  void showAllMenu() {
-  //System.out.println("=======================");
+	void showAllMenu() {
 
-  if(MenuList.size()>0) {
-   for(int i=0; i<MenuList.size(); i++) {
-   MenuList.get(i).showInfo();
-   //MenuInfo name = MenuList.get(i);
-   //System.out.println("------------");
-   }
-   } else {
-     System.out.println("등록된 메뉴정보가 없습니다.");
-    }
-  //System.out.println("=======================");
-    }
+		if (MenuList.size() > 0) {
+			for (int i = 0; i < MenuList.size(); i++) {
+				MenuList.get(i).showInfo();
+			}
+		} else {
+			System.out.println("등록된 메뉴정보가 없습니다.");
+		}
 
-   }
+	}
+
+}
