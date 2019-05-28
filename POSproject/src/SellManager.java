@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import javax.swing.event.MenuListener;
-
 public class SellManager implements Util {
 	// 판매관리
 	// 1. 주문
@@ -153,34 +151,49 @@ public class SellManager implements Util {
 		/*
 		 * if (selectTable() == false) { System.out.println("결제할 테이블이 없어."); return; }
 		 */
-
+		int tableNum = select - 1;
 		if (select < TABLE.length + 1 && select > 0) {
-			System.out.println(select + "번 테이블");
-			System.out.println("결제 금액 : " + TABLE[select - 1].getTotalPrice());
+			if (!(TABLE[tableNum] == null)) {
+				System.out.println(select + "번 테이블");
+				System.out.println("결제 금액 : " + TABLE[tableNum].getTotalPrice());
+				System.out.println("회원이야?");
+				System.out.println("1. 응, 2. 아니");
+				select = sc.nextInt();
 
-			System.out.println("회원이야?");
-			System.out.println("1. 응, 2. 아니");
-			select = sc.nextInt();
+				// 회원정보를 검색 후 포인트 적립 / 사용
+				switch (select) {
+				case 1:
+					int totalPrice = TABLE[tableNum].getTotalPrice();
 
-			// 회원정보를 검색 후 포인트 적립 / 사용
-			switch (select) {
-			case 1:
-				PointManager.getManager().usePoint(TABLE[select - 1].getTotalPrice());
-				PointManager.getManager().addPoint(TABLE[select - 1].getTotalPrice());
-				break;
-			case 2:
+					System.out.println("포인트 사용할거야?");
+					System.out.println("1. 응, 2. 아니");
 
-				break;
+					select = sc.nextInt();
+
+					switch (select) {
+					case 1:
+						PointManager.getManager().usePoint(totalPrice);
+						break;
+					case 2:
+						break;
+					}
+					System.out.println("포인트 적립해줄게");
+					PointManager.getManager().addPoint(totalPrice);
+				case 2:
+					break;
+				}
+
+				MyPOS.money += TABLE[tableNum].getTotalPrice();
+				System.out.println("결제 완료");
+				System.out.println("잔고 : " + MyPOS.money);
+				TABLE[tableNum] = null;
+
+				// History history = new History(TABLE[select - 1].payNum, payTime, payItem,
+				// TABLE[select - 1]., payAmount, memberId)
 			}
-
-			MyPOS.money += TABLE[select - 1].getTotalPrice();
-			System.out.println("잔고 : " + MyPOS.money);
-			TABLE[select - 1] = null;
-
-			// History history = new History(TABLE[select - 1].payNum, payTime, payItem,
-			// TABLE[select - 1]., payAmount, memberId)
 		} else {
-			System.out.println("올바른 테이블 번호를 입력해.");
+			System.out.println("없는 테이블");
+
 		}
 	}
 }
