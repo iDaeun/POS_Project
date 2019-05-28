@@ -19,6 +19,7 @@ public class SupplierBasicInfo extends BuyIngredient{
 		super.ingName = ingName;
 	}
 	
+	public SupplierBasicInfo() {};
 	
 	void showData(){
 		System.out.println("거래처 이름: "+name);
@@ -28,19 +29,7 @@ public class SupplierBasicInfo extends BuyIngredient{
 	}
 	
 	
-	// 거래처 이름
-	void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getName() {
-		return this.name;
-	}
-	
-	
-//	void buying(String name, int num) {
-//		
-//	}
+
 	
 	
 

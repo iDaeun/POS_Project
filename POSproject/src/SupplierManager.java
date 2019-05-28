@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 
 //import util.Util;
@@ -43,7 +41,7 @@ public class SupplierManager {
 				modifySupplier();
 				break;
 			case 4: 
-//				manageIngre();
+				manageIngre();
 			case 5:
 				orderSupplier();
 				break;
@@ -102,11 +100,19 @@ public class SupplierManager {
 		
 		int idx = searchIndex(name);
 		
+		
+		
 		if(idx>0) {
-			insertSupplier();
-			System.out.println("수정을 완료했습니다.");
-		} else {
-			System.out.println("다시 검색해주세요.");
+			si.get(idx).showData();
+			System.out.println("수정하시겠습니까? 1. 네\n2. 아니오");
+			int select = Util.sc.nextInt();
+			switch(select) {
+				case 1: 
+					insertSupplier();
+					System.out.println("수정을 완료했습니다.");				
+				case 2:
+					System.out.println("취소하였습니다.");
+			}
 		}
 	}
 	
@@ -131,9 +137,22 @@ public class SupplierManager {
 			si.get(i).showData();
 			System.out.println("-----------");
 		}
-		
 	}
 	
+	
+	
+	void manageIngre() {
+		System.out.println("현재 거래하고 있는 품목 현황입니다.");
+
+ 		for(int i=0;i<si.size();i++) {
+			si.get(i).printIngredient();
+		}
+ 		
+ 		
+
+// 		orderSupplier();
+
+ 	}
 
 	
 	void orderSupplier() {
@@ -142,39 +161,37 @@ public class SupplierManager {
 		String name = Util.sc.nextLine();
 		int num = 0;
 		
+		int idx =0;
+		
+		
+		num = Util.sc.nextInt();
+		
+
 		for(int i=0;i<IngredientManager.ingredientList.size();i++) {
+			
 			if(IngredientManager.ingredientList.get(i).getName().equals(name)) {
-				System.out.println("주문 수량을 입력하세요.");
-				num = Util.sc.nextInt();
-				// 재료 수량 추가
-				IngredientManager.ingredientList.get(i).setNum(IngredientManager.ingredientList.get(i).getNum()+num);
-				
-				
-				System.out.println("발주를 완료했습니다.");
-				break;
-			} else {
-				System.out.println("재료가 일치하지 않습니다.");
+				idx = i;
 			}
 		}
 		
 		
+		if(idx>0) {
+			// 재료 수량 추가
+			System.out.println("예상 재고 수량 : "+(int)(IngredientManager.ingredientList.get(idx).getNum()+(num))+"\n주문 하시겠습니까? 1. 네 2. 아니오");
+			int select = Util.sc.nextInt();
+			switch(select) {
+			case 1:
+				IngredientManager.ingredientList.get(idx).setNum(IngredientManager.ingredientList.get(idx).getNum()+num);
+				System.out.println("발주를 완료했습니다.");
+				break;
+			case 2:
+				System.out.println("취소했습니다.");
+				break;
+			}
+		} else {
+			System.out.println("재료가 일치하지 않습니다.");
 		
-//		for(int i=0;i<bi.size();i++) {			
-//			if(name == bi.get(i).name) {
-//				System.out.println("구매할 수량을 입력하세요.");
-//				int num = Util.sc.nextInt();
-//				
-//				
-//			}
-//		}
 		
-		
-		
-		
-		
-		
-		
-		
+		}	
+		}
 	}
-
-}
