@@ -10,7 +10,9 @@ public class IngredientInfo {
 		this.minNum = minNum;
 		this.num = num;
 	}
-
+	
+	public IngredientInfo() {}
+	
 	public String getName() {
 		return name;
 	}

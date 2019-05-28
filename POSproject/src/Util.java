@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public interface Util {
@@ -10,4 +9,8 @@ public interface Util {
 	int INGREDIENT_DELETE = 4;
 	int INGREDIENT_SHOWALL = 5;
 	int INGREDIENT_SHUTDOWN = 6;
+	
+	Scanner scan = new Scanner(System.in);
+	
+	Guest[] TABLE = new Guest[3];
 }
