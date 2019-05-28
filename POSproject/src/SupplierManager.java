@@ -7,7 +7,14 @@ import util.Util;
 public class SupplierManager {
 	// 거래처 관리 클래스
 	// 거래처 관리 기능 모음
+	
+	SupplierManager(){
+		si.add(new SupplierBasicInfo("이천쌀전문","01099342242","서울시 종로구 어디어디","쌀",10000));
+		si.add(new SupplierBasicInfo("단무지공장","01023456789","인천시 남동구 어디","단무지",500));
+		si.add(new SupplierBasicInfo("양반김","01000000000","서울시 종로구 광장시장","김",2000));
+	}
 
+	
 	public static ArrayList<SupplierBasicInfo> si = new ArrayList<SupplierBasicInfo>();
 	
 	
@@ -51,10 +58,7 @@ public class SupplierManager {
 		String name;
 		String phoneNum;
 		String address;
-		String addIngre;
-		
-		si.add(new SupplierBasicInfo("김 가게", "0299565214", "서울시 종로구 무슨동 어디", "김"));
-		si.add(new SupplierBasicInfo("쌀 가게","01093211234","서울시 종로구 어디어디","쌀"));
+		String ingName;
 		
 		System.out.println("거래처 이름을 입력하세요.");
 		name = Util.sc.nextLine();
@@ -63,9 +67,9 @@ public class SupplierManager {
 		System.out.println("거래처 주소를 입력하세요.");
 		address = Util.sc.nextLine();
 		System.out.println("거래할 품목을 적어주세요.");
-		addIngre = Util.sc.nextLine();
+		ingName = Util.sc.nextLine();
 		
-		si.add(new SupplierBasicInfo(name,phoneNum,address,addIngre));
+		si.add(new SupplierBasicInfo(name,phoneNum,address,ingName));
 		
 		
 	}
@@ -132,7 +136,7 @@ public class SupplierManager {
 		int num = 0;
 		
 		for(int i=0;i<IngredientManager.ingredientList.size();i++) {
-			if(name.equals(IngredientManager.ingredientList.get(i).getName())) {
+			if(IngredientManager.ingredientList.get(i).getName().equals(name)) {
 				System.out.println("주문 수량을 입력하세요.");
 				num = Util.sc.nextInt();
 				num +=IngredientManager.ingredientList.get(i).getNum();
