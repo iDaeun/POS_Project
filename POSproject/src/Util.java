@@ -12,5 +12,5 @@ public interface Util {
 	
 	Scanner scan = new Scanner(System.in);
 	
-	Guest[] TABLE = new Guest[3];
+
 }

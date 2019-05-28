@@ -21,35 +21,31 @@ public class SupplierBasicInfo extends BuyIngredient{
 	
 	public SupplierBasicInfo() {};
 	
-	@Override
-	public boolean equals(Object obj) {
-		
-
-		if(obj != null) {
-			return true; 
-		}
-		
-		SupplierBasicInfo sbi = (SupplierBasicInfo)obj;
-		
-		
-		if(obj != null && sbi.phoneNum == obj) {
-			return true;
-		}
-		
-		if(obj != null && sbi.ingName == obj) {
-			return true;
-		}
-		
-		return false;
-	}
-
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return phoneNum.hashCode();
+	void setName(String name) {
+		this.name = name;
 	}
 	
+	String getName() {
+		return this.name;
+	}
 	
+	void setPhoneNum(String num) {
+		this.phoneNum = num;
+	}
+	
+	String getPhoneNum() {
+		return this.name;
+	}
+	
+	void setAddress(String address) {
+		this.address = address;
+	}
+	
+	String getAddress() {
+		return this.address;
+	}
+	
+
 	
 	void showData(){
 		System.out.println("거래처 이름: "+name);

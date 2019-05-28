@@ -17,7 +17,7 @@ public class BuyIngredient{
 		ingName = name;
 	}
 	
-	public String getIngName() {
+	String getIngName() {
 		return ingName;
 	}
 	
@@ -30,10 +30,11 @@ public class BuyIngredient{
 		return ingPrice;
 	}
 	
-
-	void printIngredient() {
+	// 
+	void printIngredient(String name) {
 		System.out.println("품목 : "+ingName);
 		System.out.println("원가 : "+ingPrice);
+		System.out.println("거래처 : "+name);
 		System.out.println("---------------------------------");
 	}
 	

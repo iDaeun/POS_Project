@@ -14,6 +14,7 @@ public class IngredientManager {
 
 
 	}
+	
 
 	// 재고관리 메뉴 출력
 	void showMenu() {
