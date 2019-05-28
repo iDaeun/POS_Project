@@ -8,4 +8,8 @@ public interface Util {
 	int INGREDIENT_DELETE = 3;
 	int INGREDIENT_SHOWALL = 4;
 	int INGREDIENT_SHUTDOWN = 5;
+	
+	Scanner scan = new Scanner(System.in);
+	
+	//Guest[] TABLE = new Guest[3];
 }

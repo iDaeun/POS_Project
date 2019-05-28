@@ -1,53 +1,53 @@
 
 
-public abstract class BuyIngredient{
+public class BuyIngredient{
 	int ingPrice; // 구매할 재료 원가격
 	String ingName; // 구매할 재료 이름
-	int ingNum; // 구매할 재료 수량
-
-	public BuyIngredient() {
-		
+	int ingNum = 0; // 구매할 재료 수량
+	
+	public BuyIngredient() {};
+	
+	public BuyIngredient(String name, int price) {
+		ingName = name;
+		ingPrice = price;
 	}
 	
-
-	void setIngredient(String name, int price) {
-		this.ingName = name;
-		this.ingPrice = price;
+	void setIngName(String name) {
+		ingName = name;
 	}
 	
-	void buying(String name, int num) {
-	}
-
-
 	public String getIngName() {
 		return ingName;
 	}
 	
+	void setIngPrice(int price) {
+		
+		ingPrice = price;
+	}
 	
-//	
-//	public BuyIngredient(String name, int price) {
-//		this.name = name;
-//		this.price = price;
-//	}
-//	private void setPrice(String n) {
-//		name = name;
-//	}
-//	
-//	public String getName() {
-//		return name;
-//	}
-//	private void setPrice(int p) {
-//		price = p;
-//	}
-//	
-//	public int getPrice() {
-//		return price;
-//	}
-//	
+	public int getIngPrice() {
+		return ingPrice;
+	}
+	
+
+	void printIngredient() {
+		System.out.println("품목 : "+ingName);
+		System.out.println("원가 : "+ingPrice);
+		System.out.println("---------------------------------");
+	}
+	
 	
 	// 알림창에서 구입하는 메소드.
-//	void buying(int num) {	
-//		int numOfIng = inginfo.getNum();		
-//		numOfIng += num;		
-//	}
+	IngredientInfo inginfo = new IngredientInfo();
+	
+	void buying(int num) {	
+		int numOfIng = inginfo.getNum();		
+		numOfIng += num;
+		
+		//MyPOS.money -= (num * ingPrice);
+	}
+	
+	
+	
+	
 }

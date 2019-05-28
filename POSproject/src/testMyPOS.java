@@ -2,9 +2,9 @@
 public class testMyPOS implements Util {
 
 	static IngredientManager im = new IngredientManager();
-	static SellManager sm = new SellManager();
+	//static SellManager sm = new SellManager();
 	static SupplierManager supm = new SupplierManager();
-	static MenuManager mm = new MenuManager();
+	//static MenuManager mm = new MenuManager();
 
 	public static void main(String[] args) {
 
@@ -23,7 +23,7 @@ public class testMyPOS implements Util {
 				im.showMenu();
 				break;
 			case 2:
-				sm.selectSellMenu();
+				//sm.selectSellMenu();
 				break;
 				
 			case 3:
@@ -31,7 +31,7 @@ public class testMyPOS implements Util {
 				break;
 				
 			case 4:
-				mm.MenuManage();
+				//mm.MenuManage();
 				break;
 				
 			default:
