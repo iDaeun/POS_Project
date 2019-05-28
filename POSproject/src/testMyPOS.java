@@ -7,9 +7,12 @@ public class testMyPOS implements Util {
 	public static void main(String[] args) {
 
 		while (true) {
+			for(int i=0; i<im.ingredientList.size(); i++) {
+				im.ingredientList.get(i).alarm();
+			}
 
 			System.out.println("POS");
-			System.out.println("1. 재고, 2. 판매");
+			System.out.println("1.재고 |2.판매");
 
 			int select = sc.nextInt();
 

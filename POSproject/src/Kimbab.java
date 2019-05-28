@@ -1,12 +1,12 @@
 
 public class Kimbab {
-
+	
 	String kim = "김";
 	String rice = "쌀";
 
 	Kimbab() {
 		ingredientMinus();
-
+		ingredientAlarm();
 	}
 
 	void ingredientMinus() {
@@ -22,7 +22,11 @@ public class Kimbab {
 		int index3 = IngredientManager.searchIndex("단무지");
 
 		IngredientManager.ingredientList.get(index3).setNum(IngredientManager.ingredientList.get(index3).getNum() - 1);
+		
+	}
 
+	void ingredientAlarm() {
+		
 	}
 
 }
