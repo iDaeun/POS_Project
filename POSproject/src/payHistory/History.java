@@ -24,25 +24,30 @@ public class History {
 		//이따 변수 이름 나오면 곱하기로 바꾸기
 		this.payAmount = payAmount;	//돈
 		this.memberId = memberId; //비회원은 guest로 들어간다
-	}
+		
+		}
 	
 	public void showHistory(int i) {
 		
 		System.out.print(i+"\t");
-		System.out.printf(f2.format(payTime)+"\t");
-		//System.out.printf("%-11s",f2.format(payTime));
-		//메서드로 하면 좋을듯 get
+		
+		if (f2.format(payTime).length()>=8) {
+			System.out.printf(f2.format(payTime)+"\t");
+		}else {
+			System.out.printf(f2.format(payTime)+"\t\t");
+		}
 		System.out.print(payItem+"\t");
 		System.out.print(payEa+"개\t");
  		//여기도 메서드로 getAllPayAmount 이런식으로
 		System.out.print(payAmount+"\t");
 		System.out.print(memberId+"\t");
+		//System.out.print(memberId+"\t"); 
 		System.out.print(payNum+"\t");
 		System.out.println(f1.format(payTime)+"\t");
 		
 	}
 	
-	
+	//폰번호로 멤버이름을 찾는 메소드가 필요하다
 	
 
 }

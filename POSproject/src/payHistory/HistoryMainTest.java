@@ -19,6 +19,7 @@ public class HistoryMainTest {
 		hm.insertHistory(5, LocalDateTime.now().plusDays(2).plusHours(1).plusMinutes(30), "그냥김밥", 1, 3000, "geust");
 		hm.insertHistory(6, LocalDateTime.now().plusMonths(1), "그냥김밥", 1, 3000, "cotton");
 		hm.insertHistory(7, LocalDateTime.now().plusMonths(1).plusDays(2).plusHours(1).plusMinutes(30), "묨용김밥", 5, 13000, "geust");
+		hm.insertHistory(8, LocalDateTime.now().plusMonths(1).plusDays(3).plusHours(10).plusMinutes(13), "피자김밥", 1, 3000, "geust");
 		
 		while (true) {
 			int choice = hm.printMenu();
@@ -31,7 +32,6 @@ public class HistoryMainTest {
 				hm.showDayHistory();
 				break;
 			case 3:
-				System.out.println("월별 결제내역");
 				hm.showMonthHistory();
 				break;
 			case 4:
