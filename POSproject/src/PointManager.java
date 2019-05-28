@@ -21,36 +21,40 @@ public class PointManager {
 	}
 
 	// 회원정보 체크
-	public String checkLevel(Member member) {
+	public void checkLevel(Member member) {
+		
 		String level = member.getLevel();
-
-		if (member.getPointNum() > 1000) {
+		
+		int currentPoint = member.getPointNum();
+				
+		if (currentPoint > 1000) {
+			System.out.println("VIP로 업그레이드 되었습니다.");
 			member.setLevel("VIP회원");
-			level = member.getLevel();
 		}
-		return level;
 	}
 
 	// 포인트 적립 계산
 	public int calcPoint(int price, Member member) {
-		String level = checkLevel(member);
-		int pointNum = member.getPointNum();
+		
+		String level = member.getLevel();
+		
+		int currentPoint = member.getPointNum();
 
 		if (level == "일반회원") {
-			int point = (int) (price * 0.1); // 10% 적립
-			pointNum += point;
+			int addPoint = (int) (price * 0.1); // 일반회원 - 10% 적립
+			currentPoint += addPoint;
 
 		} else if (level == "VIP회원") {
-			int point = (int) (price * 0.2); // 20% 적립
-			pointNum += point;
+			int addPoint = (int) (price * 0.2); // VIP회원 - 20% 적립
+			currentPoint += addPoint;
 		}
-		return pointNum;
+		return currentPoint;
 	}
 
 	// ★ 포인트 증가
 	public void addPoint(int price) {
 
-		System.out.println("회원의 전화번호: ");
+		System.out.print("회원의 전화번호: ");
 		String phoneNum = util.scan.nextLine();
 		HashSet<Member> hashSet = MemberManager.getManager().getHashSet();
 
@@ -61,7 +65,10 @@ public class PointManager {
 			if (temp.getPhoneNum().equals(phoneNum)) {
 				int pointNum = calcPoint(price, temp);
 				temp.setPointNum(pointNum);
-				System.out.println("포인트가 적립 완료되었습니다.");
+				System.out.println("포인트가 적립 완료되었습니다."); 
+				
+				checkLevel(temp); //포인트 적립 후, 포인트 반영
+				
 				return;
 			}
 		}
@@ -70,31 +77,31 @@ public class PointManager {
 
 	//포인트 차감 계산
 	public int deductPoint(int price, Member member) {
-		int point = member.getPointNum();
-		int pointNum = 0;
+		int currentPoint = member.getPointNum();
 		
-		if (point > 0) {
-			System.out.println("얼마의 포인트를 사용하시겠습니까?");
-			int deductPoint = util.scan.nextInt();
+		if (currentPoint > 0) {
+			System.out.print("얼마의 포인트를 사용하시겠습니까?");
+			int deductPoint = util.scan.nextInt(); //사용할 포인트
 			util.scan.nextLine();
 
-			if (point >= deductPoint) {
+			if (currentPoint >= deductPoint) { //현재 포인트 > 사용할 포인트
 				price -= deductPoint; //가격 - 차감포인트
-				pointNum -=deductPoint; //내 포인트 - 차감포인트
-				member.setPointNum(pointNum);
+				currentPoint -=deductPoint; //현재 내 포인트 = 포인트 - 차감포인트
+				member.setPointNum(currentPoint);
 				System.out.println("포인트가 사용되었습니다.");
+				
 			} else {
 				System.out.println("현재 포인트를 초과하였습니다.");
 			}
 		} else {
 			System.out.println("포인트가 없습니다.");
 		}
-		return price;
+		return currentPoint;
 	}
 
 	// ★ 포인트 차감
 	public void usePoint(int price) {
-		System.out.println("회원의 전화번호: ");
+		System.out.print("회원의 전화번호: ");
 		String phoneNum = util.scan.nextLine();
 		HashSet<Member> hashSet = MemberManager.getManager().getHashSet();
 		

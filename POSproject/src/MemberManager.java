@@ -114,5 +114,9 @@ public class MemberManager {
 		}
 		System.out.println();
 	}
+	
+	public void showMenu() {
+		
+	}
 
 }
