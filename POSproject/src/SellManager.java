@@ -65,7 +65,6 @@ public class SellManager implements Util {
 	// 주문 받는 메서드.
 	void order() {
 		int i;
-		int cntSet;
 
 		// 추가 주문을 하면 계속해서 반복함.
 		do {
@@ -79,7 +78,6 @@ public class SellManager implements Util {
 
 			m = MenuManager.MenuList.get(select - 1);
 
-			cntSet = select - 1;
 			check = whatOrderNum(m);
 
 			orderList.add(m);
@@ -209,17 +207,23 @@ public class SellManager implements Util {
 					History h = new History(TABLE[tableNum].payNum, LocalDateTime.now(),
 							TABLE[tableNum].order.get(i).name, TABLE[tableNum].order.get(i).cnt,
 							(TABLE[tableNum].foodCnt[i] * TABLE[tableNum].order.get(i).price), "김씨");
-					System.out.println(TABLE[tableNum].order.get(i).name);
-					System.out.println(TABLE[tableNum].foodCnt[i]);
-					System.out.println((TABLE[tableNum].foodCnt[i] * TABLE[tableNum].order.get(i).price));
+					// System.out.println(TABLE[tableNum].order.get(i).name);
+					// System.out.println(TABLE[tableNum].foodCnt[i]);
+					// System.out.println((TABLE[tableNum].foodCnt[i] *
+					// TABLE[tableNum].order.get(i).price));
 				}
 
 				// History history = new History(TABLE[select - 1].payNum, payTime, payItem,
 				// TABLE[select - 1]., payAmount, memberId)
-			}
-		} else {
-			System.out.println("없는 테이블");
 
+				System.out.println("결제 완료");
+				System.out.println("잔고 : " + MyPOS.money);
+				TABLE[tableNum] = null;
+
+			} else {
+				System.out.println("없는 테이블");
+
+			}
 		}
 	}
 }
