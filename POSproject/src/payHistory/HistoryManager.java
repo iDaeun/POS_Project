@@ -5,74 +5,24 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 import util.Util;
 
 public class HistoryManager {
 
 	ArrayList<History> arr = new ArrayList<History>();
-//	Iterator<History> itrHistory = arr.iterator();
 
-	ArrayList<YearHistory> yearHistoryArr = new ArrayList<YearHistory>(); // 년도
-	MonthHistory[] monthHistoryArr = new MonthHistory[12]; // 월
-	DateHistory[] dateHistoryArr = new DateHistory[31]; // 일
-
+//	ArrayList<YearHistory> yearHistoryArr = new ArrayList<YearHistory>(); // 년도
+//	MonthHistory[] monthHistoryArr = new MonthHistory[12]; // 월
+//	DateHistory[] dateHistoryArr = new DateHistory[31]; // 일
+	HashMap<String, DateHistory> dailyMap = new HashMap<>();
+	Set<String> ks = dailyMap.keySet();
+	
 	DateTimeFormatter f1 = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL); // 2019년 5월 27일 월요일
 	DateTimeFormatter f3 = DateTimeFormatter.ofPattern("yyyyMMdd"); // 20190527
-
-	// 내역에서 데이트 뽑아내기
-	public void historyToDate() {
-//		while (itrHistory.hasNext()) {
-//			System.out.println(itrHistory.next());
-//		}
-
-		// 이 포문은 히스토리 객체가 저장된 어레이리스트 arr을 전체 돌아본다
-//		for (int i = 0; i < arr.size(); i++) {
-//			
-//			if (dateHistory 배열을 전체참조해서 해당 날짜(?)에 PayItem이 [참치김밥]인 객체가 들어가있는지 확인한다. 없는가? (근데 어떻게?)) {
-//				없으면 
-//				처음엔 이렇게 만들고
-//				//아이템 항목, 갯수, 금액
-//				Product pro= new Product(arr.get(i).getPayItem(), arr.get(i).getPayEa(), arr.get(i).getPayAmount());
-//				//날짜, 프로덕트
-//				DateHistory dateHistory = new DateHistory(해당날짜인데 형식은 아마 20190527같은 형식, pro);
-//				dateHistoryArr[27(+1일)] = dateHistory;
-//				
-//			}else {
-//				있으면 
-//				
-//				dateHistoryArr[27].product.totPayEa += 방금 참조한 arr.get(i).getPayEa();
-//				dateHistoryArr[27].product.totPayEa += 방금 참조한 arr.get(i).getPayAmount();
-//			}
-//			
-//			
-//			System.out.println(f3.format(arr.get(i).getPayTime()));
-//			System.out.println(arr.get(i).getPayItem());
-//			System.out.println(arr.get(i).getPayEa());
-//			
-
-		// 잘모르겠으니까 그냥 2019만 두고 해보자! 이미 2019 5월 기정사실임
-		for (int i = 0; i < arr.size(); i++) {
-			// System.out.println(arr.get(i).getPayTime().getDayOfMonth());
-			String fDate = f3.format(arr.get(i).getPayTime());
-
-//			if (없으면) {
-//				// 날짜 20190527, "멸추김밥", 3, 6000
-//				Product product = new Product(fDate, arr.get(i).getPayItem(), arr.get(i).getPayEa(),arr.get(i).getPayAmount());
-//				DateHistory dateHistory = new DateHistory(fDate, product);
-//				dateHistoryArr[arr.get(i).getPayTime().getDayOfMonth()-1] = dateHistory;
-//			}
-//			있으면
-//			else {
-//				
-//			}
-//			
-			// dateHistory.add(product);
-			// dateHistoryArr[arr.get(i).getPayTime().getDayOfMonth()-1] = new
-			// DateHistory(f3.format(arr.get(i).getPayTime()), 프로덕트뭉치);
-		}
-
-	}
 
 	public void insertHistory(int payNum, LocalDateTime payTime, String payItem, int payEa, long payAmount,
 			String memberId) {
@@ -165,6 +115,115 @@ public class HistoryManager {
 		System.out.println();
 	}
 
+
+//	public void makeDailyHistory(String yyyyMMdd) {
+//		ArrayList<Product> pro = new ArrayList<Product>();
+//		DateHistory dh;
+//		for (int i = 0; i < arr.size(); i++) {
+//			
+//			if (f3.format(arr.get(i).getPayTime()).equals(yyyyMMdd)) {
+//				
+//				System.out.println(arr.get(i).getPayItem());
+//				
+//				for (int j = 0; j < pro.size(); j++) {
+//					System.out.println(pro.get(j).payItem.equals(arr.get(i).getPayItem()));
+//					
+//					if(!pro.get(j).payItem.equals(arr.get(i).getPayItem())) {
+//						pro.add(new Product(f3.format(arr.get(i).getPayTime()), arr.get(i).getPayItem(), arr.get(i).getPayEa(), arr.get(i).getPayAmount()));
+////						pro.get(j).date = f3.format(arr.get(i).getPayTime());
+////						pro.get(j).payItem = arr.get(i).getPayItem();
+////						pro.get(j).totPayEa = arr.get(i).getPayEa();
+////						pro.get(j).totPayAmount = arr.get(i).getPayAmount();
+//						System.out.println("efefef");
+//					}else {
+//						pro.get(j).totPayEa += arr.get(i).getPayEa();
+//						pro.get(j).totPayAmount += arr.get(i).getPayAmount();
+//					}
+//				System.out.print("날짜 "+pro.get(j).date+"\t");
+//				System.out.print("항목 "+pro.get(j).payItem+"\t");
+//				System.out.print("개수 "+pro.get(j).totPayEa+"\t");
+//				System.out.println("돈 "+pro.get(j).totPayAmount+"\t");
+//					                        
+//				}
+//			}
+//			else {
+//				dh = new DateHistory(yyyyMMdd);
+//				dailyMap.put(yyyyMMdd, dh);
+//			}
+//		}
+//	}
+	
+	
+	Iterator<String> itr = ks.iterator();
+	
+	public void makeDailyHistory(String yyyyMMdd) {
+		//ArrayList<Product> pro = new ArrayList<Product>();
+		DateHistory dh;
+		
+		if (dailyMap.get(yyyyMMdd)==null) {
+			dh = new DateHistory(yyyyMMdd);
+			for (int i = 0; i < arr.size(); i++) {
+				if (f3.format(arr.get(i).getPayTime()).equals(yyyyMMdd)) {
+					//생성해서 넣었구
+					dh.product.add(new Product(yyyyMMdd, arr.get(i).getPayItem(), arr.get(i).getPayEa(), arr.get(i).getPayAmount()));
+					dailyMap.put(yyyyMMdd, dh);
+					
+					System.out.println(arr.get(i).getPayItem()+"ㅁㄴㅇㄹ");
+					
+				}
+				
+				while (itr.hasNext()) {
+					dailyMap.get(itr.next()).product.get(i);
+				}
+				
+			//	dailyMap.get(yyyyMMdd).product.get(i).totPayEa += arr.get(i).getPayEa();
+			//	dailyMap.get(yyyyMMdd).product.get(i).totPayAmount += arr.get(i).getPayAmount();
+			}
+			
+		}else {
+			for (int i = 0; i < arr.size(); i++) {
+			//	dailyMap.get(yyyyMMdd).product.get(i).totPayEa += arr.get(i).getPayEa();
+			//	dailyMap.get(yyyyMMdd).product.get(i).totPayAmount += arr.get(i).getPayAmount();
+			}
+		}
+			
+//			System.out.println(dailyMap.get(yyyyMMdd).product.get(1).payItem);
+//			System.out.println(dailyMap.get(yyyyMMdd).product.get(1).totPayEa);
+//			System.out.println(dailyMap.get(yyyyMMdd).product.get(1).totPayAmount);
+		}
+		
+		
+		
+		
+		
+			
+	
+//		for (int i = 0; i < arr.size(); i++) {
+//			if(dateHistoryArr[dd-1].product.size()<1){
+//				System.out.println("비었음");
+//			}
+
+	// Product pro = new Product(yyyyMMdd, arr.get(i).getPayItem(),
+	// arr.get(i).getPayEa(), arr.get(i).getPayAmount());
+//			if (f3.format(arr.get(i).getPayTime()).equals(yyyyMMdd)) {
+//				//String menu = arr.get(i).getPayItem();
+//
+//				for (int j = 0; j < dateHistoryArr[dd-1].product.size(); j++) {
+//					String st = dateHistoryArr[dd-1].product.get(i).payItem;
+//					System.out.println(st);
+//				}
+//				
+	// System.out.println(arr.get(i).getPayItem());
+	// pro.totPayAmount += arr.get(i).getPayAmount();
+	// pro.totPayEa += arr.get(i).getPayEa();
+
+//			}
+	// System.out.println("총 매출액 :" + pro.totPayAmount + ", " + "팔린 김밥 개수 : " +
+	// pro.totPayEa);
+	
+
+	// System.out.println("****************************************************");System.out.println();System.out.println();
+
 	public void showDayHistory() {
 		// 일별 결제내역
 		System.out.println("어떤 날짜의 결제 내역을 출력할까요?(숫자 8자리로 입력해주세요 ex.20190527)");
@@ -208,7 +267,6 @@ public class HistoryManager {
 					"------------------------------------------------------------------------------------------");
 			System.out.println("총 매출액 :" + tot + ", " + "팔린 김밥 개수 : " + kimbobCnt);
 		}
-
 	}
 
 	public void showMonthHistory() {
