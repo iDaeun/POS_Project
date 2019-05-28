@@ -8,6 +8,9 @@ public class SellManager implements Util, Menu {
 
 	// 2. 결제
 	// 테이블 번호에 해당하는 배열의 원소를 제거...
+	// 결제할 때 회원 여부 확인
+	//		Y. 검색 후 해당하는 객체 포인트 차감
+	//		N. 그냥 계산
 	// 내 잔고 오름.
 
 	int select;
@@ -145,7 +148,7 @@ public class SellManager implements Util, Menu {
 	void pay() {
 		System.out.println("몇 번 테이블 계산 할거야?");
 		select = sc.nextInt();
-
+		check();
 		if (check() == true) {
 			System.out.println("결제할 테이블이 없어.");
 			return;
@@ -154,15 +157,20 @@ public class SellManager implements Util, Menu {
 		if (select < TABLE.length + 1 && select > 0) {
 			System.out.println(select + "번 테이블");
 			System.out.println("결제 금액 : " + TABLE[select - 1].getTotalPrice());
-			
+
 			System.out.println("회원이야?");
 			System.out.println("1. 응, 2. 아니");
 			select = sc.nextInt();
-			
-			if(select == 1) {
-				System.out.println("이름이 뭔데?");
+
+			switch (select) {
+			case 1:
+				PointManager.getManager().usePoint(TABLE[select - 1].getTotalPrice());
+				PointManager.getManager().addPoint(TABLE[select - 1].getTotalPrice());
+				break;
+			case 2:
+				break;
 			}
-			
+
 			MyPOS.money += TABLE[select - 1].getTotalPrice();
 			System.out.println("잔고 : " + MyPOS.money);
 			TABLE[select - 1] = null;

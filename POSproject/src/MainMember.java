@@ -1,14 +1,13 @@
 
-
 import Util.util;
 
 public class MainMember {
 
-	public static void main(String[] args) {
+	void printMenu() {
 
 		System.out.println("회원관리 메뉴입니다. 원하시는 번호를 선택해주세요.");
 		while (true) {
-			System.out.printf("%d. 회원정보 등록 |%d. 회원정보 수정 |%d. 회원정보 삭제 |%d. 회원정보검색 |%d. 회원현황", util.addMember,
+			System.out.printf("%d. 회원정보 등록 |%d. 회원정보 수정 |%d. 회원정보 삭제 |%d. 회원정보검색 |%d. 회원현황 |6. 이전메뉴", util.addMember,
 					util.changeMember, util.removeMember, util.showMemeberData, util.showAll);
 			int choice = util.scan.nextInt();
 			util.scan.nextLine();
@@ -37,6 +36,8 @@ public class MainMember {
 			case 5:
 				MemberManager.getManager().showAll();
 				break;
+			case 6:
+				return;
 
 			}
 		}
