@@ -47,14 +47,7 @@ public class SellManager implements Util {
 				pay();
 				break;
 			case 3:
-				System.out.println("=================================");
-				for (int i = 0; i < TABLE.length; i++) {
-					if (TABLE[i] != null) {
-						System.out.println((i + 1) + "번 테이블 주문내역");
-						TABLE[i].showInfo();
-					}
-				}
-				System.out.println("=================================");
+				showTable();
 				break;
 			case 4:
 				return;
@@ -225,5 +218,16 @@ public class SellManager implements Util {
 
 			}
 		}
+	}
+	
+	void showTable() {
+		System.out.println("=================================");
+		for (int i = 0; i < TABLE.length; i++) {
+			if (TABLE[i] != null) {
+				System.out.println((i + 1) + "번 테이블 주문내역");
+				TABLE[i].showInfo();
+			}
+		}
+		System.out.println("=================================");
 	}
 }
