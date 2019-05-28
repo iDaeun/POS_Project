@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import util.Util;
 
@@ -15,16 +16,16 @@ public class HistoryManager {
 
 	DateTimeFormatter f1 = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 
-	public void insertHistory(int payNum, LocalDateTime payTime, String payItem, int payEa, long payAmount, String memberId) {
+	public void insertHistory(int payNum, LocalDateTime payTime, String payItem, int payEa, long payAmount,
+			String memberId) {
 		History history = new History(payNum, payTime, payItem, payEa, payAmount, memberId);
 		arr.add(history);
 	}
 
-	
 	// 5.전체출력 메소드
 	public void showHistoryAll() {
 
-		System.out.println("No\t결제 시각\t결제 메뉴\t수량\t결제금액\t구매자\t결제번호\t결제 날짜");
+		System.out.println("No\t결제 시각\t\t결제 메뉴\t수량\t결제금액\t구매자\t결제번호\t결제 날짜");
 		System.out.println("--------------------------------------------------------");
 		if (arr.size() < 1) {
 			System.out.println("결제 내역이 없습니다.");
@@ -40,10 +41,9 @@ public class HistoryManager {
 				cnt++;
 				arr.get(i).showHistory(cnt);
 
-				System.out.println(f1.format(arr.get(i).payTime) + "\t");
 			}
 			System.out.println("총 매출액 :" + tot + ", " + "팔린 김밥 개수 : " + kimbobCnt);
-			
+
 		}
 
 	}
@@ -56,10 +56,10 @@ public class HistoryManager {
 	// ================================================================
 
 	// ================================================================
-	// 2. 일일 결제내역을 보여주는 메소드
+	// 2. 일일 결제내역을 보여주는 메소드(검색해서)
 
 	public void showTitle() {
-		System.out.println("No\t결제 시각\t결제 메뉴\t수량\t결제금액\t구매자\t결제번호");
+		System.out.println("No\t결제 시각\t\t결제 메뉴\t수량\t결제금액\t구매자\t결제번호");
 		System.out.println("--------------------------------------------------------");
 	};
 
@@ -67,15 +67,16 @@ public class HistoryManager {
 		System.out.println("*********** " + f1.format(date) + "의 결제내역 ***********");
 		showTitle();
 	}
-	
+
 	public void showMonthHistoryTitle(String yyyyMM) {
-		System.out.println("*********** " + yyyyMM + "의 결제내역 ***********");
+		System.out.println("*********** " + yyyyMM + "의 상세 결제내역 ***********");
 		showTitle();
 	}
 
 	// 특정 날짜의 히스토리 알아내기
 	// 받은걸 써야(수정해야함)
 	public void showDayHistoryAll(LocalDate date) {
+
 		showDayHistoryTitle(date);
 		if (arr.size() < 1) {
 			System.out.println("결제 내역이 없습니다.");
@@ -89,7 +90,6 @@ public class HistoryManager {
 					kimbobCnt += arr.get(i).payEa;
 					cnt++;
 					arr.get(i).showHistory(cnt);
-					System.out.println();
 				}
 			}
 			System.out.println("-------------------------------------------------");
@@ -118,66 +118,56 @@ public class HistoryManager {
 
 	// ================================================================
 
-	
 	public void showMonthHistoryAll(String yyyyMM) {
-		
-		DateTimeFormatter f = DateTimeFormatter.ofPattern(yyyyMM);
-		showMonthHistoryTitle(yyyyMM);
+
+		int year = Integer.parseInt(yyyyMM.substring(0, 4));
+		int month = Integer.parseInt(yyyyMM.substring(4, 6));
+
 		if (arr.size() < 1) {
 			System.out.println("결제 내역이 없습니다.");
 		} else {
-	
 			int cnt = 0;
 			int tot = 0;
-			int kimbobCnt = 0;	
+			int kimbobCnt = 0;
+			showMonthHistoryTitle(yyyyMM);
 			for (int i = 0; i < arr.size(); i++) {
-				System.out.println(f.format((arr.get(i).payTime)));
+				if ((month == arr.get(i).payTime.getMonthValue()) && (year == arr.get(i).payTime.getYear())) {
+					tot += arr.get(i).payAmount;
+					kimbobCnt += arr.get(i).payEa;
+					cnt++;
+					arr.get(i).showHistory(cnt);
+				}
 			}
-			//잠깐! 페이타임 날짜 포맷을 yyyyMM한다음 이걸 스트링 비교하면 되잖아?
-//			for (int i = 0; i < arr.size(); i++) {
-//				if (f.format((arr.get(i).payTime))) {
-//					tot += arr.get(i).payAmount;
-//					kimbobCnt += arr.get(i).payEa;
-//					cnt++;
-//					arr.get(i).showHistory(cnt);
-//					System.out.println();
-//				}
-//			}
 			System.out.println("-------------------------------------------------");
 			System.out.println("총 매출액 :" + tot + ", " + "팔린 김밥 개수 : " + kimbobCnt);
 		}
 
-		System.out.println("=============================================");
-		System.out.println();
 	}
 
 	public void showMonthHistory() {
-	
-		// 일별 결제내역
+
+		// 월별 결제내역
 		System.out.println("원하는 월을 입력해주세요.(숫자 6자리로 입력해주세요 ex.201905)");
 
-
-		//써보려했는데 안 된다
+		// 써보려했는데 안 된다
 		String yyyyMM = Util.keyboard.nextLine();
 //		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
 //		LocalDate localDate = LocalDate.parse(yyyyMM, formatter);
 //		System.out.println(localDate.getMonthValue());
 		showMonthHistoryAll(yyyyMM);
-		
+
 	}
 
-
-	
-	// 
+	//
 	public void showMemberHistory() {
 		// 일별 결제내역
 		System.out.println("어떤 회원의 결제 내역을 출력할까요?");
-
 		String member = Util.keyboard.nextLine();
-
-		if (arr.size() < 1) {
-			System.out.println("결제 내역이 없습니다.");
-		} else {
+		
+		//이거 처리해줘야하는데.. 일지하는 사람없을때...이터레이터???
+//		if (arr.size() < 1) {
+//			System.out.println("결제 내역이 없습니다.");
+//		} else {
 			System.out.println(member + "님의 결제내역입니다");
 			showTitle();
 			int cnt = 0;
@@ -185,10 +175,10 @@ public class HistoryManager {
 				if (arr.get(i).memberId.equals(member.trim())) {
 					cnt++;
 					arr.get(i).showHistory(cnt);
-					System.out.println();
 				}
+				
 			}
-		}
+//		}
 
 	}
 

@@ -29,17 +29,20 @@ public class History {
 	public void showHistory(int i) {
 		
 		System.out.print(i+"\t");
-		System.out.print(f2.format(payTime)+"\t");
+		System.out.printf(f2.format(payTime)+"\t");
+		//System.out.printf("%-11s",f2.format(payTime));
 		//메서드로 하면 좋을듯 get
 		System.out.print(payItem+"\t");
-		System.out.print(payEa+"\t");
+		System.out.print(payEa+"개\t");
  		//여기도 메서드로 getAllPayAmount 이런식으로
 		System.out.print(payAmount+"\t");
 		System.out.print(memberId+"\t");
 		System.out.print(payNum+"\t");
-		//System.out.println(f1.format(payTime)+"\t");
+		System.out.println(f1.format(payTime)+"\t");
 		
 	}
+	
+	
 	
 
 }
