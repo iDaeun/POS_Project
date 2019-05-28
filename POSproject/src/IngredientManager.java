@@ -2,12 +2,10 @@ import java.util.*;
 
 public class IngredientManager {
 	// 재료 -> ArrayList배열에 추가
-	protected static ArrayList<IngredientInfo> ingredientList;
+	protected static ArrayList<IngredientInfo> ingredientList = new ArrayList<IngredientInfo>();
 
 	public IngredientManager() {
 		// IngredientManager생성시 재료배열 자동 생성 & 재고관리 매뉴 출력 기능 실행
-		ingredientList = new ArrayList<IngredientInfo>();
-
 		ingredientList.add(new IngredientInfo("김", 10, 100));
 		ingredientList.add(new IngredientInfo("쌀", 10, 100));
 		ingredientList.add(new IngredientInfo("단무지", 10, 100));
@@ -90,7 +88,7 @@ public class IngredientManager {
 	}
 
 	// 재료추가
-	void add() {
+	static void add() {
 
 		System.out.print("[추가]이름: ");
 		String name = Util.sc.nextLine();
