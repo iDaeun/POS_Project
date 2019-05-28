@@ -25,22 +25,18 @@ public class MenuManager {
       break;
 
      case 2:
-
       menuEdit();
       break;
 
      case 3:
-
       menuDelete();
       break;
 
      case 4:
-
       showAllMenu();
       break;
 
      case 5:
-
       System.out.println("메뉴관리를 종료합니다.");
       return;
 
@@ -112,8 +108,6 @@ public class MenuManager {
 
     int index = searchIndex(name);
 
-    //MenuList.get(index).price = price;
-
     if(!(index<0)) {
      System.out.println("같은 이름이 존재합니다.\n 다른 이름을 입력해주세요");
     }else {
@@ -121,19 +115,16 @@ public class MenuManager {
      System.out.println("새로운 메뉴이름: "+name); 
      System.out.println("가격 :"+price);
 
-     MenuList.add(new MenuInfo(name, price));
-
+     
     }
-
-    MenuInfo info = new MenuInfo(name,price);
-    MenuList.add(info);
+    MenuList.add(new MenuInfo(name, price));
     System.out.printf("%d원인 %s메뉴가 추가되었습니다.",price,name);
 
    }
 
   
 
-   //메뉴 수정 메서드!!!!!!!!!(가격 수정)
+   //메뉴 수정 메서드!!!!!!!!!!!!!!
 
    void menuEdit() {
     System.out.println("수정할 메뉴의 이름을 입력하세요 : ");
@@ -154,7 +145,7 @@ public class MenuManager {
      System.out.println("수정이 완료되었습니다.");
      
      MenuList.remove(index);
-     MenuList.add(index, new MenuInfo(name));
+     MenuList.add(index, new MenuInfo(name,price));
     }
     
 
