@@ -18,6 +18,10 @@ public class MenuIngredient {
 		return price;
 	}
 
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
 	public void setPrice(int price) {
 		this.price = price;
 

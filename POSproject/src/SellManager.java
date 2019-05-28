@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class SellManager implements Util {
@@ -64,6 +65,8 @@ public class SellManager implements Util {
 	// 주문 받는 메서드.
 	void order() {
 		int i;
+		int cntSet;
+
 		// 추가 주문을 하면 계속해서 반복함.
 		do {
 			System.out.println("-----메뉴-----");
@@ -75,11 +78,14 @@ public class SellManager implements Util {
 			select = sc.nextInt();
 
 			m = MenuManager.MenuList.get(select - 1);
+
+			cntSet = select - 1;
 			check = whatOrderNum(m);
 
 			orderList.add(m);
 
 		} while (check == false);
+
 		addTable();
 	}
 
@@ -186,7 +192,27 @@ public class SellManager implements Util {
 				MyPOS.money += TABLE[tableNum].getTotalPrice();
 				System.out.println("결제 완료");
 				System.out.println("잔고 : " + MyPOS.money);
-				TABLE[tableNum] = null;
+
+				/*
+				 * public History(int payNum, LocalDateTime payTime, String payItem, int payEa,
+				 * long payAmount, String memberId) { this.payNum = payNum; //결제번호 this.payTime
+				 * = payTime; //결제시각 this.payItem = payItem; //결제항목 this.payEa = payEa; //개수
+				 * //이따 변수 이름 나오면 곱하기로 바꾸기 this.payAmount = payAmount; //돈 this.memberId =
+				 * memberId; //비회원은 guest로 들어간다
+				 * 
+				 * }
+				 */
+
+				for (int i = 0; i < TABLE[tableNum].order.size(); i++) {
+
+					// 히스토리 테스트용
+					History h = new History(TABLE[tableNum].payNum, LocalDateTime.now(),
+							TABLE[tableNum].order.get(i).name, TABLE[tableNum].order.get(i).cnt,
+							(TABLE[tableNum].foodCnt[i] * TABLE[tableNum].order.get(i).price), "김씨");
+					System.out.println(TABLE[tableNum].order.get(i).name);
+					System.out.println(TABLE[tableNum].foodCnt[i]);
+					System.out.println((TABLE[tableNum].foodCnt[i] * TABLE[tableNum].order.get(i).price));
+				}
 
 				// History history = new History(TABLE[select - 1].payNum, payTime, payItem,
 				// TABLE[select - 1]., payAmount, memberId)
