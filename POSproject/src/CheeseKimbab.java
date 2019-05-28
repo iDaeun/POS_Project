@@ -1,11 +1,11 @@
 
 public class CheeseKimbab extends Kimbab {
-	String tuna = "치즈";
+	String cheese = "치즈";
 
 	CheeseKimbab() {
-		name = "치즈김밥";
-		price = 3500;
-		cnt = 0;
+		String name = "치즈김밥";
+		int price = 3500;
+		int cnt = 0;
 
 	}
 	@Override
@@ -16,8 +16,7 @@ public class CheeseKimbab extends Kimbab {
 		int index5 = IngredientManager.searchIndex("치즈");
 
 		IngredientManager.ingredientList.get(index5).setNum(IngredientManager.ingredientList.get(index5).getNum() - 1);
-
-		cnt++;
+		
 	}
 
 }

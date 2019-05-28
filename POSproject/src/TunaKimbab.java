@@ -3,9 +3,9 @@ public class TunaKimbab extends Kimbab {
 	String tuna = "참치";
 
 	TunaKimbab() {
-		name = "참치김밥";
-		price = 4000;
-		cnt = 0;
+		String name = "참치김밥";
+		int price = 4000;
+		int cnt = 0;
 
 	}
 	@Override
@@ -17,7 +17,6 @@ public class TunaKimbab extends Kimbab {
 
 		IngredientManager.ingredientList.get(index4).setNum(IngredientManager.ingredientList.get(index4).getNum() - 1);
 
-		cnt++;
 	}
 
 }
