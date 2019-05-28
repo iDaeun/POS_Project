@@ -22,13 +22,13 @@ public class SupplierManager {
 	
 	
 	// 포스 메인에서 불러와야 하기 때문에 public이어야함.
-	public void printMenu(int choice) {
+	public void printMenu() {
 		// 거래처관리 메뉴 출력.
 		while(true) {
 			System.out.println("[거래처 관리]\n메뉴를 선택해주세요.");
 			System.out.println("1. 거래처 등록\n2. 거래처 삭제\n3. 거래처 수정\n4. 발주 품목 관리\n5. 발주\n6. 거래처 목록\n7. 메인으로 돌아가기");
 			
-			choice = Util.sc.nextInt();
+			int choice = Util.sc.nextInt();
 			Util.sc.nextLine();
 			
 			
@@ -43,7 +43,7 @@ public class SupplierManager {
 				modifySupplier();
 				break;
 			case 4: 
-				manageIngre();
+//				manageIngre();
 			case 5:
 				orderSupplier();
 				break;
@@ -134,24 +134,11 @@ public class SupplierManager {
 		
 	}
 	
-	void manageIngre() {
-		System.out.println("현재 거래하고 있는 품목 현황입니다.");
-		
-		for(int i=0;i<si.size();i++) {
-			si.get(i).printIngredient();
-		}
-		
-		return;
-		
-		
-	}
+
 	
 	void orderSupplier() {
 		
-		
 		System.out.println("발주할 재료의 이름을 입력하세요");
-		
-		
 		String name = Util.sc.nextLine();
 		int num = 0;
 		
@@ -159,9 +146,10 @@ public class SupplierManager {
 			if(IngredientManager.ingredientList.get(i).getName().equals(name)) {
 				System.out.println("주문 수량을 입력하세요.");
 				num = Util.sc.nextInt();
+				// 재료 수량 추가
 				IngredientManager.ingredientList.get(i).setNum(IngredientManager.ingredientList.get(i).getNum()+num);
 				
-//				si.
+				
 				System.out.println("발주를 완료했습니다.");
 				break;
 			} else {
@@ -179,6 +167,8 @@ public class SupplierManager {
 //				
 //			}
 //		}
+		
+		
 		
 		
 		
