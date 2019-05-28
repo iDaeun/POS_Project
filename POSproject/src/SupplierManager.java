@@ -131,15 +131,18 @@ public class SupplierManager {
 //		}
 		Iterator<SupplierBasicInfo> itr = supInfo.iterator();
 		
+		
 		while(itr.hasNext()) {
-			if(itr.next().phoneNum.equals(num)) {
+			info = itr.next();
+		}
+			if(info.phoneNum.equals(num)) {
 				System.out.println("수정할 목록을 선택하세요.\n1. 거래처 이름\n2.거래처 주소");
 				int select = Util.sc.nextInt();
 				
 				switch(select) {
 				case 1: 
 					System.out.println("수정할 거래처 이름을 입력하세요");
-					itr.next().name = Util.sc.nextLine();
+					.name = Util.sc.nextLine();
 					break;
 				case 2:
 					System.out.println("수정할 거래처 주소를 입력하세요");
