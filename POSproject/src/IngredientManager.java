@@ -92,9 +92,11 @@ public class IngredientManager {
 	}
 
 	// 재료추가
-	static void add() {
+	static IngredientInfo add() {
+		
+		IngredientInfo ingredientInfo = new IngredientInfo();
 
-		System.out.print("[추가]이름: ");
+		System.out.print("[추가]재료 이름: ");
 		String name = Util.sc.nextLine();
 
 		int index = searchIndex(name);
@@ -108,8 +110,14 @@ public class IngredientManager {
 			int minNum = Util.sc.nextInt();
 
 			ingredientList.add(new IngredientInfo(name, minNum, num));
+			int i = searchIndex(name);
+			//int i = ingredientList.indexOf(ingredientList.);
+			System.out.println(i);
+			ingredientInfo = ingredientList.get(i);
 			System.out.println("추가되었습니다!");
 		}
+		
+		return ingredientInfo;
 	}
 
 	// 재료정보수정

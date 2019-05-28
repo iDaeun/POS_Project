@@ -4,8 +4,8 @@ public class SupplierBasicInfo extends BuyIngredient{
 	String name; // 거래처 이름
 	String phoneNum; // 거래처 번호
 	String address; // 거래처 주소
-	String addIngre; // 거래처 추가정보
-		
+	String addIngre; // 거래처 취급품목
+
 	SupplierBasicInfo(String name, String phoneNum,String address, String addIngre) {
 		this.name = name;
 		this.phoneNum = phoneNum;
@@ -29,11 +29,11 @@ public class SupplierBasicInfo extends BuyIngredient{
 	}
 	
 	// 거래처 이름
-	String getName() {
+	protected String getName() {
 		return this.name;
 	}
 	
-	String getIngre() {
+	protected String getIngre() {
 		return this.addIngre;
 	}
 	

@@ -4,8 +4,10 @@ public abstract class BuyIngredient{
 	int ingPrice; // 구매할 재료 원가격
 	String ingName; // 구매할 재료 이름
 	int ingNum; // 구매할 재료 수량
-	
-	public BuyIngredient() {}
+
+	public BuyIngredient() {
+		
+	}
 	
 
 	void setIngredient(String name, int price) {
@@ -15,6 +17,13 @@ public abstract class BuyIngredient{
 	
 	void buying(String name, int num) {
 	}
+
+
+	public String getIngName() {
+		return ingName;
+	}
+	
+	
 //	
 //	public BuyIngredient(String name, int price) {
 //		this.name = name;

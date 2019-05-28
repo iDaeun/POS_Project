@@ -1,21 +1,20 @@
-
 import java.util.ArrayList;
 
 public class SupplierManager {
 	// 거래처 관리 클래스
 	// 거래처 관리 기능 모음
 
-	public static ArrayList<SupplierBasicInfo> si = new ArrayList<SupplierBasicInfo>();
-	
+	static ArrayList<SupplierBasicInfo> si = new ArrayList<SupplierBasicInfo>();
+		
 	
 	// 포스 메인에서 불러와야 하기 때문에 public이어야함.
-	public void printMenu(int choice) {
+	public void printMenu() {
 		// 거래처관리 메뉴 출력.
 		while(true) {
 			System.out.println("[거래처 관리]\n메뉴를 선택해주세요.");
 			System.out.println("1. 거래처 등록\n2. 거래처 삭제\n3. 거래처 수정\n4. 발주\n5. 거래처 목록\n6. 메인으로 돌아가기");
 			
-			choice = Util.sc.nextInt();
+			int choice = Util.sc.nextInt();
 			Util.sc.nextLine();
 			
 			

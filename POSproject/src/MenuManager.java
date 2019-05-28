@@ -121,12 +121,12 @@ public class MenuManager {
      System.out.println("가격 :"+price);
      
      Util.sc.nextLine();
-     IngredientManager.add();
+     IngredientInfo ingredientInfo = IngredientManager.add();
 
-     
+     MenuList.add(new MenuInfo(name, price, ingredientInfo));
+     System.out.printf("%d원인 %s메뉴가 추가되었습니다.\n",price,name);
     }
-    MenuList.add(new MenuInfo(name, price));
-    System.out.printf("%d원인 %s메뉴가 추가되었습니다.\n",price,name);
+
 
    }
 

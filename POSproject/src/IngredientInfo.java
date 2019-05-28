@@ -11,6 +11,10 @@ public class IngredientInfo {
 		this.num = num;
 	}
 
+	public IngredientInfo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -54,7 +58,7 @@ public class IngredientInfo {
 			
 			////거래처관리 for문 -> equals(name) -> 거래처 showData
 			for(int i=0; i<SupplierManager.si.size(); i++) {
-				if(SupplierManager.si.get(i).getIngre().equals(name)) {
+				if(SupplierManager.si.get(i).getIngName().equals(name)) {
 					SupplierManager.si.get(i).showData();
 				}
 			}
