@@ -161,7 +161,7 @@ public class SupplierManager {
 				num = Util.sc.nextInt();
 				IngredientManager.ingredientList.get(i).setNum(IngredientManager.ingredientList.get(i).getNum()+num);
 				
-				
+//				si.
 				System.out.println("발주를 완료했습니다.");
 				break;
 			} else {
