@@ -9,15 +9,20 @@ public class MenuManager {
    
    //메뉴관리 선택
    void MenuManage() {
-
+	   
     while(true) {
-     int choice = Util.sc.nextInt();
-   
+    
      System.out.println("=============================");
      System.out.println(" 1.메뉴 추가\n 2.메뉴 수정\n 3.메뉴 삭제\n 4.전체 메뉴 출력\n 5.종료");
-     System.out.println("원하는 메뉴를 선택해주세요.");
+     System.out.println("=============================");
+     System.out.println("원하는 메뉴를 선택해주세요 : ");
     
-
+     
+     int choice = Util.sc.nextInt();
+     Util.sc.nextLine();
+     System.out.println();
+     
+     
      switch(choice) {
 
      case 1:
@@ -118,7 +123,7 @@ public class MenuManager {
      
     }
     MenuList.add(new MenuInfo(name, price));
-    System.out.printf("%d원인 %s메뉴가 추가되었습니다.",price,name);
+    System.out.printf("%d원인 %s메뉴가 추가되었습니다.\n",price,name);
 
    }
 
