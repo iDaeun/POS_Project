@@ -64,7 +64,7 @@ public class SellManager implements Util, Menu {
 
 		for (int i = 0; i < select; i++) {
 
-			new Kimbab();
+//			new Kimbab();
 			System.out.println();
 
 		}

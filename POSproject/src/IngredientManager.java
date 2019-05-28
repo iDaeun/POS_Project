@@ -1,7 +1,5 @@
 import java.util.*;
 
-import util.Util;
-
 public class IngredientManager {
 	// 재료 -> ArrayList배열에 추가
 	protected static ArrayList<IngredientInfo> ingredientList;
