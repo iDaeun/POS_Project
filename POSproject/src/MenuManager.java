@@ -8,7 +8,8 @@ public class MenuManager {
 
    
    //메뉴관리 선택
-   void MenuManage() {
+   
+   void menuManage() {
 	   
     while(true) {
     
@@ -50,12 +51,7 @@ public class MenuManager {
     }
 
    }
-   
-   //메뉴를 배열에 저장!!!!!!!!!!!!!!!!!!!
-    public void firstAdd(MenuInfo name) {
-    MenuList.add(name);
-   }
-  
+
    
    //검색할 메뉴의 이름을 출력!!!!!!!!!!!!!
    public void searchPrint() {
@@ -85,21 +81,6 @@ public class MenuManager {
   }
 
 
-   //메뉴이름등록!!!!!!!!!!!!!!!!!!!!!!!
-   void insertMenu() {
-    
-    System.out.println("메뉴이름 :");
-    String name = Util.sc.nextLine();
-    System.out.println("메뉴가격 :");
-    int price = Util.sc.nextInt();
-
-   MenuList.add(new MenuInfo(name, price));
-   System.out.println("메뉴가 등록되었습니다.");
-
-   
-
-   }
-
 
    //신메뉴 추가 메서드!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    
@@ -119,10 +100,17 @@ public class MenuManager {
      
      System.out.println("새로운 메뉴이름: "+name); 
      System.out.println("가격 :"+price);
-
      
+     
+      System.out.println("추가될 재료이름을 입력하세요.");
+     Util.sc.nextLine();
+     IngredientManager.add();
+     
+
+     MenuList.add(new MenuInfo(name, price));
+   
     }
-    MenuList.add(new MenuInfo(name, price));
+    
     System.out.printf("%d원인 %s메뉴가 추가되었습니다.\n",price,name);
 
    }
@@ -171,8 +159,20 @@ public class MenuManager {
    for(int i = index;i<MenuList.size();i++) {
      MenuList.remove(index);
    }
-     System.out.printf("%s메뉴가 삭제되었습니다.",name);
+   
+     System.out.printf("%s메뉴가 삭제되었습니다.\n",name);
+     System.out.println();
     }
+    System.out.printf("%s메뉴의 재료도 삭제하시겠습니까?\n", name);
+    
+  
+    String yn = Util.sc.nextLine();
+    if(yn=="Y") { 
+    	IngredientManager.delete();
+    }else {
+    	System.out.println("메뉴삭제를 종료합니다.");
+    }
+    
    }
 
    
@@ -183,7 +183,7 @@ public class MenuManager {
   if(MenuList.size()>0) {
    for(int i=0; i<MenuList.size(); i++) {
    MenuList.get(i).showInfo();
-   //MenuInfo name = MenuList.get(i);
+
    System.out.println("------------");
    }
    } else {

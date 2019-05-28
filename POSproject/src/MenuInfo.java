@@ -2,6 +2,7 @@ public class MenuInfo {
 
      String name;
      int price;
+     String ingredient;
 
     public MenuInfo(String name, int price) {
 
@@ -9,6 +10,13 @@ public class MenuInfo {
      this.price = price;
     }
 
+    public MenuInfo(String name, int price,String ingredient) {
+
+        this.name = name;
+        this.price = price;
+        this.ingredient = ingredient;
+       }
+    
     public MenuInfo(String name) {
      this.name = name;
     }
@@ -33,11 +41,6 @@ public class MenuInfo {
     }
 
     
-   /* public String toString() {
-     return String.format("%s %d", name,price);
-    }
-    */
-    
    void showInfo() {
 
     System.out.println("메뉴이름 :"+name);
@@ -45,7 +48,5 @@ public class MenuInfo {
    }
 
   }
-
- 
 
  
