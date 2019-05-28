@@ -50,7 +50,7 @@ public class MenuInfo {
 
     System.out.println("메뉴이름 :"+name);
     System.out.println("메뉴가격 :"+price);
-    System.out.println("사용되는 재료: ");
+    System.out.println("사용되는 재료) ");
     this.info.showInfo();
    }
 

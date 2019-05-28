@@ -181,18 +181,18 @@ public class MenuManager {
    
  // 배열에 저장된 모든 데이터를 출력!!
   void showAllMenu() {
-  System.out.println("=======================");
+  //System.out.println("=======================");
 
   if(MenuList.size()>0) {
    for(int i=0; i<MenuList.size(); i++) {
    MenuList.get(i).showInfo();
    //MenuInfo name = MenuList.get(i);
-   System.out.println("------------");
+   //System.out.println("------------");
    }
    } else {
      System.out.println("등록된 메뉴정보가 없습니다.");
     }
-  System.out.println("=======================");
+  //System.out.println("=======================");
     }
 
    }

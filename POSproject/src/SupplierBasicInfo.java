@@ -33,13 +33,8 @@ public class SupplierBasicInfo extends BuyIngredient{
 		return this.name;
 	}
 	
-	protected String getIngre() {
+	String getAddIngre() {
 		return this.addIngre;
 	}
-	
-//	void buying(String name, int num) {
-//		
-//	}
-	
-	
+		
 }

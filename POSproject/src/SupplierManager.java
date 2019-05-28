@@ -6,9 +6,15 @@ public class SupplierManager {
 
 	static ArrayList<SupplierBasicInfo> si = new ArrayList<SupplierBasicInfo>();
 		
+	public SupplierManager() {
+		si.add(new SupplierBasicInfo("김 가게", "0299565214", "서울시 종로구 무슨동 어디", "김"));
+		si.add(new SupplierBasicInfo("쌀 가게","01093211234","서울시 종로구 어디어디","쌀"));
+		si.add(new SupplierBasicInfo("단무지 가게","01093211656","서울시 종로구 어디어디","단무지"));
+	}
 	
 	// 포스 메인에서 불러와야 하기 때문에 public이어야함.
 	public void printMenu() {
+
 		// 거래처관리 메뉴 출력.
 		while(true) {
 			System.out.println("[거래처 관리]\n메뉴를 선택해주세요.");
@@ -48,9 +54,6 @@ public class SupplierManager {
 		String phoneNum;
 		String address;
 		String addIngre;
-		
-		si.add(new SupplierBasicInfo("김 가게", "0299565214", "서울시 종로구 무슨동 어디", "김"));
-		si.add(new SupplierBasicInfo("쌀 가게","01093211234","서울시 종로구 어디어디","쌀"));
 		
 		System.out.println("거래처 이름을 입력하세요.");
 		name = Util.sc.nextLine();
