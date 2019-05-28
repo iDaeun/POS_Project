@@ -8,7 +8,6 @@ public class testMyPOS implements Util {
 	public static void main(String[] args) {
 
 		while (true) {
-
 			System.out.println("POS");
 			System.out.println("1. 재고, 2. 판매, 3. 회원관리");
 

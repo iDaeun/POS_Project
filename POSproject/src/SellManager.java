@@ -9,19 +9,21 @@ public class SellManager implements Util, Menu {
 	// 2. 결제
 	// 테이블 번호에 해당하는 배열의 원소를 제거...
 	// 결제할 때 회원 여부 확인
-	//		Y. 검색 후 해당하는 객체 포인트 차감
-	//		N. 그냥 계산
+	// Y. 검색 후 해당하는 객체 포인트 차감
+	// N. 그냥 계산
 	// 내 잔고 오름.
 
-	int select;
+	int select; // 입력값을 받을 변수.
 
 	Kimbab k;
-	TunaKimbab t;
 
+	// 장바구니 역할
 	ArrayList<Kimbab> orderList = new ArrayList<Kimbab>();
 
+	// 테이블에 빈 자리가 있는지 확인하는 변수
 	boolean check = false;
 
+	// 시작 메뉴
 	void selectSellMenu() {
 		while (true) {
 
@@ -32,6 +34,8 @@ public class SellManager implements Util, Menu {
 
 			switch (select) {
 			case 1:
+
+				// 주문을 하기 전 자리 확인.
 				if (check() == false) {
 					System.out.println("자리가 없어.");
 				} else {
@@ -57,13 +61,15 @@ public class SellManager implements Util, Menu {
 		}
 	}
 
+	// 주문 받는 메서드.
 	void order() {
-
+		
+		// 추가 주문을 하면 계속해서 반복함.
 		do {
 			System.out.println("-----메뉴-----");
 			System.out.println("1. 김밥 | 2. 참치김밥 | 3. 주문 | 4. 취소"); // 메뉴판이 완성되면 sysout이 아닌 메뉴판의 내용을 출력하는 메서드를 사용.
 			select = sc.nextInt();
-			switch (select) {
+			switch (select) { // 메뉴판이 완성되면.. if문 써야할듯..
 			case KIMBAB:
 				k = new Kimbab();
 				check = whatOrderNum(k);
@@ -87,6 +93,7 @@ public class SellManager implements Util, Menu {
 		return;
 	}
 
+	// 테이블이 비어있으면 손님 객체를 생성하고 배열에추가하는 메서드.
 	void addTable() {
 		for (int i = 0; i < TABLE.length; i++) {
 			if (TABLE[i] == null) {
@@ -100,6 +107,7 @@ public class SellManager implements Util, Menu {
 
 	}
 
+	// 빈 자리를 찾는 메서드
 	boolean check() {
 		boolean c = false;
 		for (int i = 0; i < TABLE.length; i++) {
@@ -110,8 +118,10 @@ public class SellManager implements Util, Menu {
 		return c;
 	}
 
+	// 주문 메서드
+	// 다른 메뉴도 주문할 때 false 값을 반환.
 	boolean whatOrderNum(Kimbab k) {
-
+		boolean addOrder = false;
 		System.out.println("몇 개 주문해 ?");
 		select = sc.nextInt();
 		if (select < 1) {
@@ -134,17 +144,18 @@ public class SellManager implements Util, Menu {
 		switch (select) {
 
 		case 1:
-			check = false;
+			addOrder = false;
 			break;
 
 		case 2:
 			System.out.println("주문 완료.");
-			check = true;
+			addOrder = true;
 			break;
 		}
-		return check;
+		return addOrder;
 	}
 
+	// 결제 메서드
 	void pay() {
 		System.out.println("몇 번 테이블 계산 할거야?");
 		select = sc.nextInt();
@@ -162,6 +173,7 @@ public class SellManager implements Util, Menu {
 			System.out.println("1. 응, 2. 아니");
 			select = sc.nextInt();
 
+			// 회원정보를 검색 후 포인트 적립 / 사용
 			switch (select) {
 			case 1:
 				PointManager.getManager().usePoint(TABLE[select - 1].getTotalPrice());

@@ -5,23 +5,24 @@ public class Guest {
 	static int payTotalNum = 1;
 	int payNum;
 	int totalPrice;
+	String foodname;
 
 	ArrayList<Kimbab> order;
 
 	Guest(ArrayList<Kimbab> orderList) {
 		payNum = payTotalNum;
 		++payTotalNum;
-		
+
 		totalPrice = 0;
 
 		this.order = orderList;
-		
+
 		for (int i = 0; i < order.size(); i++) {
 			totalPrice += order.get(i).getPrice() * order.get(i).getCnt();
 		}
 
 	}
-	
+
 	public int getTotalPrice() {
 		return totalPrice;
 	}
