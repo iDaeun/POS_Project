@@ -3,7 +3,7 @@ public class testMyPOS implements Util {
 
 	static IngredientManager im = new IngredientManager();
 	static SellManager sm = new SellManager();
-	static MainMember mm2 = new MainMember();
+	static MemberManager mm2 = MemberManager.getManager();
 	static MenuManager mm1 = new MenuManager();
 
 	public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class testMyPOS implements Util {
 				mm1.printMenu();
 				break;
 			case 4:
-				mm2.printMenu();
+				mm2.showMenu();
 				break;
 			default:
 				System.out.println("올바르게 입력해\n");
