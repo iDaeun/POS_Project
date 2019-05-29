@@ -154,9 +154,7 @@ public class SellManager implements Util {
 	void pay() {
 		System.out.println("몇 번 테이블 계산 할거야?");
 		select = scan.nextInt();
-		/*
-		 * if (selectTable() == false) { System.out.println("결제할 테이블이 없어."); return; }
-		 */
+
 		int tableNum = select - 1;
 		if (select < TABLE.length + 1 && select > 0) {
 			if (!(TABLE[tableNum] == null)) {
@@ -188,6 +186,7 @@ public class SellManager implements Util {
 						case 2:
 							break;
 						}
+
 					} else {
 						System.out.println("1. 포인트 사용 | 2. 포인트 적립");
 						select = scan.nextInt();
@@ -198,6 +197,7 @@ public class SellManager implements Util {
 							TABLE[tableNum].setTotalPrice(totalPrice);
 							MyPOS.money += TABLE[tableNum].getTotalPrice();
 							break;
+
 						case 2:
 							PointManager.getManager().addPoint(totalPrice);
 							break;
@@ -210,40 +210,31 @@ public class SellManager implements Util {
 					System.out.println("1. 응 | 2. 아니");
 					select = scan.nextInt();
 					scan.nextLine();
+
 					if (select == 1) {
 						MemberManager.getManager().addMember();
+						System.out.println("포인트 적립할게");
 						PointManager.getManager().addPoint(totalPrice);
 						MyPOS.money += TABLE[tableNum].getTotalPrice();
+
 					} else if (select == 2) {
 						MyPOS.money += TABLE[tableNum].getTotalPrice();
 						break;
+
 					}
 				}
 
-				/*
-				 * public History(int payNum, LocalDateTime payTime, String payItem, int payEa,
-				 * long payAmount, String memberId) { this.payNum = payNum; //결제번호 this.payTime
-				 * = payTime; //결제시각 this.payItem = payItem; //결제항목 this.payEa = payEa; //개수
-				 * //이따 변수 이름 나오면 곱하기로 바꾸기 this.payAmount = payAmount; //돈 this.memberId =
-				 * memberId; //비회원은 guest로 들어간다
-				 * 
-				 * }
-				 */
-
 				for (int i = 0; i < TABLE[tableNum].order.size(); i++) {
 
-					// 히스토리 테스트용
+					// 히스토리 객체 생성
 
 					long payAmount = (TABLE[tableNum].foodCnt[i] * TABLE[tableNum].order.get(i).getPrice());
 
 					HistoryManager.insertHistory(TABLE[tableNum].payNum, LocalDateTime.now(),
-							TABLE[tableNum].order.get(i).getName(), TABLE[tableNum].foodCnt[i], payAmount,
-							"123");
+							TABLE[tableNum].order.get(i).getName(), TABLE[tableNum].foodCnt[i], payAmount, "1111-1111");
 					;
 				}
 
-				// History history = new History(TABLE[select - 1].payNum, payTime, payItem,
-				// TABLE[select - 1]., payAmount, memberId)
 				System.out.println("결제 완료");
 				System.out.println("잔고 : " + MyPOS.money);
 				TABLE[tableNum] = null;

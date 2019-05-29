@@ -242,11 +242,11 @@ public class HistoryManager {
 
 	// ================================================================
 
-	public int printMenu() {
+	public void printMenu() {
 		while (true) {
 			System.out
 					.println("=====================================  메뉴를 선택해주세요  ====================================");
-			System.out.println("1.오늘의 결제내역\t 2.일별 검색\t 3.월별 결제내역 검색\t 4.회원별 결제내역\t 5.모든 결제내역 보기");
+			System.out.println("1.오늘의 결제내역\t 2.일별 검색\t 3.월별 결제내역 검색\t 4.회원별 결제내역\t 5.모든 결제내역 보기\t 6. 이전메뉴");
 			// System.out.println("인기메뉴");
 			System.out.println(
 					"==========================================================================================");
@@ -271,8 +271,7 @@ public class HistoryManager {
 				showHistoryAll();
 				break;
 			case 6:
-				makeDailyHistory("20190528");
-				break;
+				return;
 
 			default:
 				break;

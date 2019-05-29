@@ -3,6 +3,7 @@ import history.HistoryManager;
 import ingredient.IngredientManager;
 import member.MemberManager;
 import menu.MenuManager;
+import selling.MyPOS;
 import selling.SellManager;
 import supplier.SupplierManager;
 import util.Util;
@@ -19,6 +20,7 @@ public class MyPOS_Test {
 	public static void main(String[] args) {
 
 		while (true) {
+			System.out.println("현재 잔고 : " + MyPOS.money);
 			for (int i = 0; i < im.ingredientList.size(); i++) {
 				im.ingredientList.get(i).alarm();
 			}
