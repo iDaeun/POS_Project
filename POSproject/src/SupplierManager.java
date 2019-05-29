@@ -89,9 +89,13 @@ public class SupplierManager {
 		int idx = searchIndex(num);
 		
 			if(si.get(idx).phoneNum.equals(num)) {
+				System.out.println("================================");	
 				si.get(idx).showData();
+				System.out.println("================================");	
+				
 				System.out.println("삭제하시겠습니까? \n1. 네 / 2. 아니오.");
 				int select = Util.sc.nextInt();
+				
 				switch(select) {
 					case 1: 
 						si.remove(si.get(idx));
@@ -103,7 +107,9 @@ public class SupplierManager {
 					default :
 						System.out.println("올바른 값을 입력하세요.");						
 				}
+				
 			} else {
+				
 				System.out.println("다시 검색해주세요.\n");
 				return;
 				
@@ -121,6 +127,7 @@ public class SupplierManager {
 		int idx = searchIndex(num);
 			
 			if(idx>0) {
+				
 				System.out.println("================================");				
 				si.get(idx).showData();
 				System.out.println("================================");
@@ -130,6 +137,7 @@ public class SupplierManager {
 				Util.sc.nextLine();
 				
 				switch(select){
+				
 					case 1:
 						System.out.println("수정할 거래처 이름을 입력하세요.\n");
 						String name = Util.sc.nextLine();
@@ -150,11 +158,15 @@ public class SupplierManager {
 						
 					default:
 						System.out.println("올바른 값을 넣어주세요.\n");
+						
 				}
 			System.out.println("수정을 완료했습니다.\n");
+			
 			} else {
+				
 				System.out.println("해당 정보를 가진 거래처가 존재하지 않습니다.\n");
 				return;
+				
 			}
 		}
 	
@@ -215,6 +227,7 @@ public class SupplierManager {
 			if(IngredientManager.ingredientList.get(i).getName().equals(name)) {
 				idx = i; 
 			}
+			
 		}
 		
 		
@@ -237,7 +250,7 @@ public class SupplierManager {
 					break;
 			}
 		} else {
-				System.out.println("품목이 일치하지 않습니다. 다시 입력해주세요.\n");	
+				System.out.println("현재고의 품목과 일치하지 않습니다. 다시 입력해주세요.\n");	
 		}
 		
 	}
