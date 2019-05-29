@@ -1,5 +1,12 @@
 
-public class MyPOS_Test implements Util {
+import ingredient.IngredientManager;
+import member.MemberManager;
+import menu.MenuManager;
+import selling.SellManager;
+import supplier.SupplierManager;
+import util.Util;
+
+public class MyPOS_Test{
 
 	static IngredientManager im = new IngredientManager();
 	static SellManager sm1 = new SellManager();
@@ -17,7 +24,7 @@ public class MyPOS_Test implements Util {
 			System.out.println("POS");
 			System.out.println("1. 재고, 2. 판매, 3. 메뉴관리, 4. 회원관리, 5. 거래처관리");
 
-			int select = sc.nextInt();
+			int select = Util.scan.nextInt();
 
 			switch (select) {
 			case 1:

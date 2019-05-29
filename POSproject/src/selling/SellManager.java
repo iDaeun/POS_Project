@@ -1,5 +1,11 @@
+package selling;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import history.History;
+import member.PointManager;
+import menu.Menu;
+import menu.MenuManager;
+import util.Util;
 
 public class SellManager implements Util {
 	// 판매관리
@@ -25,13 +31,13 @@ public class SellManager implements Util {
 	boolean check = false;
 
 	// 시작 메뉴
-	void selectSellMenu() {
+	public void selectSellMenu() {
 		while (true) {
 
 			System.out.println("판매관리");
 			System.out.println("1. 주문 | 2. 결제 | 3.테이블 정보 | 4. 이전 메뉴");
 
-			select = sc.nextInt();
+			select = scan.nextInt();
 
 			switch (select) {
 			case 1:
@@ -67,7 +73,7 @@ public class SellManager implements Util {
 			}
 			System.out.println();
 
-			select = sc.nextInt();
+			select = scan.nextInt();
 
 			m = MenuManager.MenuList.get(select - 1);
 
@@ -110,7 +116,7 @@ public class SellManager implements Util {
 	boolean whatOrderNum(Menu m) {
 		boolean addOrder = false;
 		System.out.println("몇 개 주문해 ?");
-		select = sc.nextInt();
+		select = scan.nextInt();
 		if (select < 1) {
 			System.out.println("1개 이상 주문해");
 
@@ -125,7 +131,7 @@ public class SellManager implements Util {
 		}
 		System.out.println("다른 메뉴도 주문해?");
 		System.out.println("1. 응, 2. 아니");
-		select = sc.nextInt();
+		select = scan.nextInt();
 
 		switch (select) {
 
@@ -144,7 +150,7 @@ public class SellManager implements Util {
 	// 결제 메서드
 	void pay() {
 		System.out.println("몇 번 테이블 계산 할거야?");
-		select = sc.nextInt();
+		select = scan.nextInt();
 		/*
 		 * if (selectTable() == false) { System.out.println("결제할 테이블이 없어."); return; }
 		 */
@@ -155,7 +161,7 @@ public class SellManager implements Util {
 				System.out.println("결제 금액 : " + TABLE[tableNum].getTotalPrice());
 				System.out.println("회원이야?");
 				System.out.println("1. 응, 2. 아니");
-				select = sc.nextInt();
+				select = scan.nextInt();
 
 				// 회원정보를 검색 후 포인트 적립 / 사용
 				switch (select) {
@@ -165,7 +171,7 @@ public class SellManager implements Util {
 					System.out.println("포인트 사용할거야?");
 					System.out.println("1. 응, 2. 아니");
 
-					select = sc.nextInt();
+					select = scan.nextInt();
 
 					switch (select) {
 					case 1:
@@ -198,8 +204,8 @@ public class SellManager implements Util {
 
 					// 히스토리 테스트용
 					History h = new History(TABLE[tableNum].payNum, LocalDateTime.now(),
-							TABLE[tableNum].order.get(i).name, TABLE[tableNum].order.get(i).cnt,
-							(TABLE[tableNum].foodCnt[i] * TABLE[tableNum].order.get(i).price), "김씨");
+							TABLE[tableNum].order.get(i).getName(), TABLE[tableNum].order.get(i).getCnt(),
+							(TABLE[tableNum].foodCnt[i] * TABLE[tableNum].order.get(i).getPrice()), "김씨");
 					// System.out.println(TABLE[tableNum].order.get(i).name);
 					// System.out.println(TABLE[tableNum].foodCnt[i]);
 					// System.out.println((TABLE[tableNum].foodCnt[i] *

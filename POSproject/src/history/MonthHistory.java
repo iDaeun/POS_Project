@@ -1,7 +1,4 @@
-
-
-
-
+package history;
 public class MonthHistory {
 
 	String month;

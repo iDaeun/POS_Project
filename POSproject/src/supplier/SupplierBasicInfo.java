@@ -1,4 +1,4 @@
-
+package supplier;
 
 public class SupplierBasicInfo extends BuyIngredient{
 	String name; // 거래처 이름
@@ -21,7 +21,7 @@ public class SupplierBasicInfo extends BuyIngredient{
 	
 	public SupplierBasicInfo() {};
 	
-	void showData(){
+	public void showData(){
 		System.out.println("거래처 이름: "+name);
 		System.out.println("거래처 번호: "+phoneNum);
 		System.out.println("거래처 주소: "+address);

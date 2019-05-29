@@ -1,4 +1,5 @@
-
+package supplier;
+import ingredient.IngredientInfo;
 
 public class BuyIngredient{
 	int ingPrice; // 구매할 재료 원가격

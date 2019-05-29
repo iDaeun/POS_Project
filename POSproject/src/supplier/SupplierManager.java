@@ -1,4 +1,10 @@
+package supplier;
+
 import java.util.ArrayList;
+
+import ingredient.IngredientManager;
+import util.Util;
+
 
 //import util.Util;
 
@@ -6,7 +12,7 @@ public class SupplierManager {
 	// 거래처 관리 클래스
 	// 거래처 관리 기능 모음
 	
-	SupplierManager(){
+	public SupplierManager(){
 		si.add(new SupplierBasicInfo("이천쌀전문","01099342242","서울시 종로구 어디어디","쌀",100));
 		si.add(new SupplierBasicInfo("단무지공장","01023456789","인천시 남동구 어디","단무지",50));
 		si.add(new SupplierBasicInfo("양반김","01000000000","서울시 종로구 광장시장","김",20));
@@ -26,8 +32,8 @@ public class SupplierManager {
 			System.out.println("[거래처 관리]\n메뉴를 선택해주세요.");
 			System.out.println("1. 거래처 등록\n2. 거래처 삭제\n3. 거래처 수정\n4. 발주 품목 관리\n5. 발주\n6. 거래처 목록\n7. 메인으로 돌아가기");
 			
-			int choice = Util.sc.nextInt();
-			Util.sc.nextLine();
+			int choice = Util.scan.nextInt();
+			Util.scan.nextLine();
 			
 			
 			switch(choice) {
@@ -64,13 +70,13 @@ public class SupplierManager {
 		String ingName;
 		
 		System.out.println("거래처 이름을 입력하세요.");
-		name = Util.sc.nextLine();
+		name = Util.scan.nextLine();
 		System.out.println("거래처 전화번호를 입력하세요.");
-		phoneNum = Util.sc.nextLine();
+		phoneNum = Util.scan.nextLine();
 		System.out.println("거래처 주소를 입력하세요.");
-		address = Util.sc.nextLine();
+		address = Util.scan.nextLine();
 		System.out.println("거래할 품목을 적어주세요.");
-		ingName = Util.sc.nextLine();
+		ingName = Util.scan.nextLine();
 		
 		
 		si.add(new SupplierBasicInfo(name,phoneNum,address,ingName));
@@ -80,7 +86,7 @@ public class SupplierManager {
 	void deleteSupplier() {
 			
 		System.out.println("삭제할 거래처 이름을 입력하세요.");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 		
 		int idx = searchIndex(name);
 			
@@ -96,7 +102,7 @@ public class SupplierManager {
 	void modifySupplier() {
 		// 거래처 수정
 		System.out.println("수정할 거래처 이름을 입력하세요.");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 		
 		int idx = searchIndex(name);
 		
@@ -105,7 +111,7 @@ public class SupplierManager {
 		if(idx>0) {
 			si.get(idx).showData();
 			System.out.println("수정하시겠습니까? 1. 네\n2. 아니오");
-			int select = Util.sc.nextInt();
+			int select = Util.scan.nextInt();
 			switch(select) {
 				case 1: 
 					insertSupplier();
@@ -158,13 +164,13 @@ public class SupplierManager {
 	void orderSupplier() {
 		
 		System.out.println("발주할 재료의 이름을 입력하세요");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 		int num = 0;
 		
 		int idx =0;
 		
 		
-		num = Util.sc.nextInt();
+		num = Util.scan.nextInt();
 		
 
 		for(int i=0;i<IngredientManager.ingredientList.size();i++) {
@@ -178,7 +184,7 @@ public class SupplierManager {
 		if(idx>0) {
 			// 재료 수량 추가
 			System.out.println("예상 재고 수량 : "+(int)(IngredientManager.ingredientList.get(idx).getNum()+(num))+"\n주문 하시겠습니까? 1. 네 2. 아니오");
-			int select = Util.sc.nextInt();
+			int select = Util.scan.nextInt();
 			switch(select) {
 			case 1:
 				IngredientManager.ingredientList.get(idx).setNum(IngredientManager.ingredientList.get(idx).getNum()+num);

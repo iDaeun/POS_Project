@@ -1,3 +1,6 @@
+package menu;
+import ingredient.IngredientManager;
+
 public class MenuIngredient {
 
 	String name;

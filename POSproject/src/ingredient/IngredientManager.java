@@ -1,9 +1,13 @@
-import java.util.*;
+package ingredient;
+
+import java.util.ArrayList;
+
+import util.Util;
 
 public class IngredientManager {
 	// 재료 -> ArrayList배열에 추가
 	//IngredientManager생성시 재료배열 자동 생성
-	static ArrayList<IngredientInfo> ingredientList = new ArrayList<IngredientInfo>();
+	public static ArrayList<IngredientInfo> ingredientList = new ArrayList<IngredientInfo>();
 
 	public IngredientManager() {
 		//시연을 위해 기본 재료 정보 3개 저장함
@@ -13,7 +17,7 @@ public class IngredientManager {
 	}
 
 	// 재고관리 메뉴 출력
-	void showMenu() {
+	public void showMenu() {
 
 		while (true) {
 
@@ -28,8 +32,8 @@ public class IngredientManager {
 			
 			System.out.print("원하시는 메뉴를 선택해주세요: ");
 
-			int choice = Util.sc.nextInt();
-			Util.sc.nextLine();
+			int choice = Util.scan.nextInt();
+			Util.scan.nextLine();
 			System.out.println();
 
 			switch (choice) {
@@ -63,7 +67,7 @@ public class IngredientManager {
 	}
 
 	// 이름 검색 -> 매칭되는 index 리턴
-	static int searchIndex(String name) {
+	public static int searchIndex(String name) {
 
 		int index = -1;
 		for (int i = 0; i < ingredientList.size(); i++) {
@@ -77,7 +81,7 @@ public class IngredientManager {
 	// 재료검색
 	void showInfo() {
 		System.out.println("검색할 재료 이름을 입력해주세요:");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 
 		int index = searchIndex(name);
 
@@ -89,11 +93,11 @@ public class IngredientManager {
 	}
 
 	// 재료추가
-	static IngredientInfo add() {
+	public static IngredientInfo add() {
 		IngredientInfo ingredientInfo = new IngredientInfo();
 
 		System.out.print("[추가]재료 이름: ");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 
 		int index = searchIndex(name);
 
@@ -101,9 +105,9 @@ public class IngredientManager {
 			System.out.println("중복된 이름이 있습니다, 다시 입력해주세요");
 		} else {
 			System.out.print("[추가]현재수량: ");
-			int num = Util.sc.nextInt();
+			int num = Util.scan.nextInt();
 			System.out.print("[추가]최소수량: ");
-			int minNum = Util.sc.nextInt();
+			int minNum = Util.scan.nextInt();
 
 			ingredientList.add(new IngredientInfo(name, minNum, num));
 			int i = searchIndex(name);
@@ -118,7 +122,7 @@ public class IngredientManager {
 	// 재료정보수정
 	void edit() {
 		System.out.print("수정할 재료 이름을 입력해주세요: ");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 
 		int index = searchIndex(name);
 
@@ -126,11 +130,11 @@ public class IngredientManager {
 			System.out.println("찾으시는 재료가 없습니다, 다시 검색해주세요.");
 		} else {
 			System.out.print("[수정]이름: ");
-			name = Util.sc.nextLine();
+			name = Util.scan.nextLine();
 			System.out.print("[수정]현재수량: ");
-			int num = Util.sc.nextInt();
+			int num = Util.scan.nextInt();
 			System.out.print("[수정]최소수량: ");
-			int minNum = Util.sc.nextInt();
+			int minNum = Util.scan.nextInt();
 
 			ingredientList.remove(index);
 			ingredientList.add(index, new IngredientInfo(name, minNum, num));
@@ -141,7 +145,7 @@ public class IngredientManager {
 	// 재료삭제
 	void delete() {
 		System.out.print("검색할 재료 이름을 입력해주세요: ");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 
 		int index = searchIndex(name);
 

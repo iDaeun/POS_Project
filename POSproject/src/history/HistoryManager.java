@@ -1,3 +1,4 @@
+package history;
 
 
 import java.time.LocalDate;
@@ -6,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
-import Util.util;
+import util.Util;
 
 public class HistoryManager {
 
@@ -105,7 +106,7 @@ public class HistoryManager {
 		System.out.println("어떤 날짜의 결제 내역을 출력할까요?(숫자 8자리로 입력해주세요 ex.20190527)");
 
 		// 예외처리는 나중에...ㅎㅎ
-		String date = util.scan.nextLine();
+		String date = Util.scan.nextLine();
 		// 너무 지저분한 것 같은데...parse 도전해보자
 		int year = Integer.parseInt(date.substring(0, 4));
 		int month = Integer.parseInt(date.substring(4, 6));
@@ -156,7 +157,7 @@ public class HistoryManager {
 		System.out.println("원하는 월을 입력해주세요.(숫자 6자리로 입력해주세요 ex.201905)");
 
 		// 써보려했는데 안 된다
-		String yyyyMM = util.scan.nextLine();
+		String yyyyMM = Util.scan.nextLine();
 //		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
 //		LocalDate localDate = LocalDate.parse(yyyyMM, formatter);
 //		System.out.println(localDate.getMonthValue());
@@ -169,7 +170,7 @@ public class HistoryManager {
 		// 일별 결제내역
 		System.out.println("어떤 회원의 결제 내역을 출력할까요?");
 
-		String member = util.scan.nextLine();
+		String member = Util.scan.nextLine();
 
 		if (arr.size() < 1) {
 			System.out.println("결제 내역이 없습니다.");
@@ -199,9 +200,9 @@ public class HistoryManager {
 		// System.out.println("5. 인기메뉴");//이번주 인기메뉴, 이번달 인기메뉴
 		System.out.println("===============================================================================");
 
-		int choice = util.scan.nextInt();
+		int choice = Util.scan.nextInt();
 
-		util.scan.nextLine(); // 현재 라인의 버퍼를 출력(clear)
+		Util.scan.nextLine(); // 현재 라인의 버퍼를 출력(clear)
 
 		return choice;
 	}

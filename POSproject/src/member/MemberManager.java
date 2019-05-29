@@ -1,9 +1,11 @@
+package member;
+
 
 
 import java.util.HashSet;
 import java.util.Iterator;
 
-import Util.util;
+import util.Util;
 
 public class MemberManager {
 
@@ -29,9 +31,9 @@ public class MemberManager {
 	// 1.입력
 	public void addMember() {
 		System.out.print("이름: ");
-		String name = util.scan.nextLine();
+		String name = Util.scan.nextLine();
 		System.out.print("전화번호: ");
-		String phoneNum = util.scan.nextLine();
+		String phoneNum = Util.scan.nextLine();
 
 		Member member = new Member(name, phoneNum);
 
@@ -43,7 +45,7 @@ public class MemberManager {
 	public void changeMember() {
 
 		System.out.print("검색할 회원의 전화번호: ");
-		String phoneNum = util.scan.nextLine();
+		String phoneNum = Util.scan.nextLine();
 
 		Iterator<Member> ir = hashSet.iterator();
 
@@ -51,18 +53,18 @@ public class MemberManager {
 			Member temp = ir.next();
 			if (temp.getPhoneNum().equals(phoneNum)) {
 				System.out.print("어떤 사항을 수정하시겠습니까? 1. 이름 |2. 전화번호");
-				int choice = util.scan.nextInt();
-				util.scan.nextLine();
+				int choice = Util.scan.nextInt();
+				Util.scan.nextLine();
 				switch (choice) {
 				case 1:
 					System.out.print("이름: ");
-					String rename = util.scan.nextLine();
+					String rename = Util.scan.nextLine();
 					temp.setName(rename);
 					return;
 
 				case 2:
 					System.out.print("전화번호: ");
-					String rePhoneNum = util.scan.nextLine();
+					String rePhoneNum = Util.scan.nextLine();
 					temp.setPhoneNum(rePhoneNum);
 					return;
 				}
@@ -76,7 +78,7 @@ public class MemberManager {
 	public void removeMember() {
 
 		System.out.print("검색할 회원의 전화번호: ");
-		String phoneNum = util.scan.nextLine();
+		String phoneNum = Util.scan.nextLine();
 
 		Iterator<Member> ir = hashSet.iterator();
 		while (ir.hasNext()) {
@@ -94,7 +96,7 @@ public class MemberManager {
 	// 4. 데이터 보여주기
 	public void showData() {
 		System.out.print("검색할 회원의 전화번호: ");
-		String phoneNum = util.scan.nextLine();
+		String phoneNum = Util.scan.nextLine();
 
 		Iterator<Member> ir = hashSet.iterator();
 		while (ir.hasNext()) {
@@ -118,10 +120,10 @@ public class MemberManager {
 	public void showMenu() {
 		System.out.println("회원관리 메뉴입니다. 원하시는 번호를 선택해주세요.");
 		while (true) {
-			System.out.printf("%d. 회원정보 등록 |%d. 회원정보 수정 |%d. 회원정보 삭제 |%d. 회원정보검색 |%d. 회원현황 6. 이전메뉴", util.addMember,
-					util.changeMember, util.removeMember, util.showMemeberData, util.showAll);
-			int choice = util.scan.nextInt();
-			util.scan.nextLine();
+			System.out.printf("%d. 회원정보 등록 |%d. 회원정보 수정 |%d. 회원정보 삭제 |%d. 회원정보검색 |%d. 회원현황 6. 이전메뉴", Util.ADDMEMBER,
+					Util.CHANGEMEMBER, Util.REMOVEMEMBER, Util.SHOWMEMBERDATA, Util.SHOWALL);
+			int choice = Util.scan.nextInt();
+			Util.scan.nextLine();
 
 			
 			// 나중에 예외처리하기

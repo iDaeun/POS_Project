@@ -1,8 +1,13 @@
+package menu;
+
 import java.util.ArrayList;
+import ingredient.IngredientInfo;
+import ingredient.IngredientManager;
+import util.Util;
 
 public class MenuManager {
 
-	static ArrayList<Menu> MenuList = new ArrayList<Menu>();
+	public static ArrayList<Menu> MenuList = new ArrayList<Menu>();
 
 	public MenuManager() {
 		IngredientInfo ingre1 = new IngredientInfo("야채", 10, 2);
@@ -18,7 +23,7 @@ public class MenuManager {
 	}
 
 	// 메뉴관리 선택
-	void printMenu() {
+	public void printMenu() {
 
 		while (true) {
 
@@ -27,8 +32,8 @@ public class MenuManager {
 			System.out.println("=============================");
 			System.out.println("원하는 메뉴를 선택해주세요 : ");
 
-			int choice = Util.sc.nextInt();
-			Util.sc.nextLine();
+			int choice = Util.scan.nextInt();
+			Util.scan.nextLine();
 			System.out.println();
 
 			switch (choice) {
@@ -67,7 +72,7 @@ public class MenuManager {
 	// 검색할 메뉴의 이름을 출력!!!!!!!!!!!!!
 	public void searchPrint() {
 		System.out.println("검색할 메뉴를 입력해주세요");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 
 		int index = searchIndex(name);
 
@@ -106,10 +111,10 @@ public class MenuManager {
 
 	void menuAdd() {
 		System.out.println("추가할 메뉴의 이름을 입력하세요 : ");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 
 		System.out.println("추가할 메뉴의 가격을 입력하세요 : ");
-		int price = Util.sc.nextInt();
+		int price = Util.scan.nextInt();
 
 		int index = searchIndex(name);
 
@@ -120,7 +125,7 @@ public class MenuManager {
 			System.out.println("새로운 메뉴이름: " + name);
 			System.out.println("가격 :" + price);
 
-			Util.sc.nextLine();
+			Util.scan.nextLine();
 			IngredientInfo ingredientInfo = IngredientManager.add();
 
 			MenuList.add(new Menu(name, price, ingredientInfo));
@@ -133,7 +138,7 @@ public class MenuManager {
 
 	void menuEdit() {
 		System.out.println("수정할 메뉴의 이름을 입력하세요 : ");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 
 		int index = searchIndex(name);
 
@@ -142,9 +147,9 @@ public class MenuManager {
 		} else {
 
 			System.out.println("수정된 메뉴 이름 : ");
-			name = Util.sc.nextLine();
+			name = Util.scan.nextLine();
 			System.out.println("수정할 메뉴의 가격을 입력하세요 : ");
-			int price = Util.sc.nextInt();
+			int price = Util.scan.nextInt();
 			System.out.println("수정이 완료되었습니다.");
 
 			MenuList.remove(index);
@@ -158,7 +163,7 @@ public class MenuManager {
 	void menuDelete() {
 
 		System.out.println("삭제할 메뉴의 이름을 입력하세요 : ");
-		String name = Util.sc.nextLine();
+		String name = Util.scan.nextLine();
 
 		int index = searchIndex(name);
 

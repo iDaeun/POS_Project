@@ -1,3 +1,7 @@
+package menu;
+import ingredient.IngredientInfo;
+import ingredient.IngredientManager;
+
 public class Menu extends MenuIngredient {
 
 	IngredientInfo info;

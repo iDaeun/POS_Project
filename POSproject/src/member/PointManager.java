@@ -1,9 +1,10 @@
+package member;
 
 
 import java.util.HashSet;
 import java.util.Iterator;
 
-import Util.util;
+import util.Util;
 
 public class PointManager {
 
@@ -55,7 +56,7 @@ public class PointManager {
 	public void addPoint(int price) {
 
 		System.out.print("회원의 전화번호: ");
-		String phoneNum = util.scan.nextLine();
+		String phoneNum = Util.scan.nextLine();
 		HashSet<Member> hashSet = MemberManager.getManager().getHashSet();
 
 		Iterator<Member> ir = hashSet.iterator();
@@ -81,8 +82,8 @@ public class PointManager {
 		
 		if (currentPoint > 0) {
 			System.out.print("얼마의 포인트를 사용하시겠습니까?");
-			int deductPoint = util.scan.nextInt(); //사용할 포인트
-			util.scan.nextLine();
+			int deductPoint = Util.scan.nextInt(); //사용할 포인트
+			Util.scan.nextLine();
 
 			if (currentPoint >= deductPoint) { //현재 포인트 > 사용할 포인트
 				price -= deductPoint; //가격 - 차감포인트
@@ -102,7 +103,7 @@ public class PointManager {
 	// ★ 포인트 차감
 	public void usePoint(int price) {
 		System.out.print("회원의 전화번호: ");
-		String phoneNum = util.scan.nextLine();
+		String phoneNum = Util.scan.nextLine();
 		HashSet<Member> hashSet = MemberManager.getManager().getHashSet();
 		
 		Iterator<Member> ir = hashSet.iterator();
