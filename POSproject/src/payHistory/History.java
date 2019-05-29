@@ -89,13 +89,15 @@ public class History {
  		//여기도 메서드로 getAllPayAmount 이런식으로
 		System.out.print(payAmount+"\t");
 		System.out.print(memberId+"\t");
-		//System.out.print(memberId+"\t"); 
+		//System.out.print(memberName+"\t"); 
 		System.out.print(payNum+"\t");
 		System.out.println(f1.format(payTime)+"\t");
 		
 	}
 	
 	//폰번호로 멤버이름을 찾는 메소드가 필요하다
+	public void phoneToName() {
 	
+	}
 
 }

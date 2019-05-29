@@ -20,7 +20,7 @@ public class HistoryManager {
 //	DateHistory[] dateHistoryArr = new DateHistory[31]; // 일
 	HashMap<String, DateHistory> dailyMap = new HashMap<>();
 	Set<String> ks = dailyMap.keySet();
-	
+
 	DateTimeFormatter f1 = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL); // 2019년 5월 27일 월요일
 	DateTimeFormatter f3 = DateTimeFormatter.ofPattern("yyyyMMdd"); // 20190527
 
@@ -77,12 +77,13 @@ public class HistoryManager {
 	};
 
 	public void showDayHistoryTitle(LocalDate date) {
-		System.out.println("***********  [" + f1.format(date) + "의 결제내역]  ***********");
+		System.out.println("******************************  [" + f1.format(date) + "의 결제내역]  *****************************");
+		
 		showTitle();
 	}
 
 	public void showMonthHistoryTitle(String yyyyMM) {
-		System.out.println("***********  [" + yyyyMM + "의 상세 결제내역  ]***********");
+		System.out.println("******************************  [" + yyyyMM + "의 상세 결제내역  ]******************************");		
 		showTitle();
 	}
 
@@ -110,125 +111,53 @@ public class HistoryManager {
 			System.out.println("총 매출액 :" + tot + ", " + "팔린 김밥 개수 : " + kimbobCnt);
 		}
 
-		System.out.println("****************************************************");
+		System.out.println("******************************************************************************************");
 		System.out.println();
 		System.out.println();
 	}
 
-
-//	public void makeDailyHistory(String yyyyMMdd) {
-//		ArrayList<Product> pro = new ArrayList<Product>();
-//		DateHistory dh;
-//		for (int i = 0; i < arr.size(); i++) {
-//			
-//			if (f3.format(arr.get(i).getPayTime()).equals(yyyyMMdd)) {
-//				
-//				System.out.println(arr.get(i).getPayItem());
-//				
-//				for (int j = 0; j < pro.size(); j++) {
-//					System.out.println(pro.get(j).payItem.equals(arr.get(i).getPayItem()));
-//					
-//					if(!pro.get(j).payItem.equals(arr.get(i).getPayItem())) {
-//						pro.add(new Product(f3.format(arr.get(i).getPayTime()), arr.get(i).getPayItem(), arr.get(i).getPayEa(), arr.get(i).getPayAmount()));
-////						pro.get(j).date = f3.format(arr.get(i).getPayTime());
-////						pro.get(j).payItem = arr.get(i).getPayItem();
-////						pro.get(j).totPayEa = arr.get(i).getPayEa();
-////						pro.get(j).totPayAmount = arr.get(i).getPayAmount();
-//						System.out.println("efefef");
-//					}else {
-//						pro.get(j).totPayEa += arr.get(i).getPayEa();
-//						pro.get(j).totPayAmount += arr.get(i).getPayAmount();
-//					}
-//				System.out.print("날짜 "+pro.get(j).date+"\t");
-//				System.out.print("항목 "+pro.get(j).payItem+"\t");
-//				System.out.print("개수 "+pro.get(j).totPayEa+"\t");
-//				System.out.println("돈 "+pro.get(j).totPayAmount+"\t");
-//					                        
-//				}
-//			}
-//			else {
-//				dh = new DateHistory(yyyyMMdd);
-//				dailyMap.put(yyyyMMdd, dh);
-//			}
-//		}
-//	}
-	
-	
 	Iterator<String> itr = ks.iterator();
-	
+
 	public void makeDailyHistory(String yyyyMMdd) {
-		//ArrayList<Product> pro = new ArrayList<Product>();
+		// ArrayList<Product> pro = new ArrayList<Product>();
 		DateHistory dh;
-		
-		if (dailyMap.get(yyyyMMdd)==null) {
+
+		// dailyMap.containsKey(yyyyMMdd)
+
+		if (dailyMap.get(yyyyMMdd) == null) {
 			dh = new DateHistory(yyyyMMdd);
 			for (int i = 0; i < arr.size(); i++) {
+				String item = arr.get(i).getPayItem();//결제내역에서 뽑아온 항목의 이름
+			
 				if (f3.format(arr.get(i).getPayTime()).equals(yyyyMMdd)) {
-					//생성해서 넣었구
-					dh.product.add(new Product(yyyyMMdd, arr.get(i).getPayItem(), arr.get(i).getPayEa(), arr.get(i).getPayAmount()));
+					Product pro = new Product(yyyyMMdd, item, arr.get(i).getPayEa(),
+							arr.get(i).getPayAmount());
+					// 생성해서 넣었구
+					dh.productMap.put(item, pro);
+					
 					dailyMap.put(yyyyMMdd, dh);
-					
-					System.out.println(arr.get(i).getPayItem()+"ㅁㄴㅇㄹ");
-					
+
+					// 증가시켜주면 된다
+
 				}
+
+				System.out.println(dh.productMap.get(item).payItem + "ㄷㄹㄷ ");
+				System.out.println(dh.productMap.get(item).totPayEa + "ㄷㄹㄷ ");
+				System.out.println(dh.productMap.get(item).totPayAmount + "ㄷㄹㄷ ");
 				
-				while (itr.hasNext()) {
-					dailyMap.get(itr.next()).product.get(i);
-				}
-				
-			//	dailyMap.get(yyyyMMdd).product.get(i).totPayEa += arr.get(i).getPayEa();
-			//	dailyMap.get(yyyyMMdd).product.get(i).totPayAmount += arr.get(i).getPayAmount();
+//				System.out.println(arr.get(i).getPayEa() + "ㄷㄹㄷㄹ ");
+//				System.out.println(arr.get(i).getPayAmount() + "ㄷㄹ ");
+
 			}
-			
-		}else {
-			for (int i = 0; i < arr.size(); i++) {
-			//	dailyMap.get(yyyyMMdd).product.get(i).totPayEa += arr.get(i).getPayEa();
-			//	dailyMap.get(yyyyMMdd).product.get(i).totPayAmount += arr.get(i).getPayAmount();
-			}
+
 		}
-			
-//			System.out.println(dailyMap.get(yyyyMMdd).product.get(1).payItem);
-//			System.out.println(dailyMap.get(yyyyMMdd).product.get(1).totPayEa);
-//			System.out.println(dailyMap.get(yyyyMMdd).product.get(1).totPayAmount);
-		}
-		
-		
-		
-		
-		
-			
-	
-//		for (int i = 0; i < arr.size(); i++) {
-//			if(dateHistoryArr[dd-1].product.size()<1){
-//				System.out.println("비었음");
-//			}
-
-	// Product pro = new Product(yyyyMMdd, arr.get(i).getPayItem(),
-	// arr.get(i).getPayEa(), arr.get(i).getPayAmount());
-//			if (f3.format(arr.get(i).getPayTime()).equals(yyyyMMdd)) {
-//				//String menu = arr.get(i).getPayItem();
-//
-//				for (int j = 0; j < dateHistoryArr[dd-1].product.size(); j++) {
-//					String st = dateHistoryArr[dd-1].product.get(i).payItem;
-//					System.out.println(st);
-//				}
-//				
-	// System.out.println(arr.get(i).getPayItem());
-	// pro.totPayAmount += arr.get(i).getPayAmount();
-	// pro.totPayEa += arr.get(i).getPayEa();
-
-//			}
-	// System.out.println("총 매출액 :" + pro.totPayAmount + ", " + "팔린 김밥 개수 : " +
-	// pro.totPayEa);
-	
-
-	// System.out.println("****************************************************");System.out.println();System.out.println();
+	}
 
 	public void showDayHistory() {
 		// 일별 결제내역
 		System.out.println("어떤 날짜의 결제 내역을 출력할까요?(숫자 8자리로 입력해주세요 ex.20190527)");
 
-		// 예외처리는 나중에...ㅎㅎ
+		// 나중에 예외처리
 		String date = Util.keyboard.nextLine().replaceAll(" ", "");
 		// 너무 지저분한 것 같은데...parse 도전해보자
 		int year = Integer.parseInt(date.substring(0, 4));

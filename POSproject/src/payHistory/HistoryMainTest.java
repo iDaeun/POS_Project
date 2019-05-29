@@ -42,7 +42,7 @@ public class HistoryMainTest {
 				hm.showHistoryAll();
 				break;
 			case 6:
-				hm.makeDailyHistory("20190527");
+				hm.makeDailyHistory("20190528");
 				break;
 
 			default:

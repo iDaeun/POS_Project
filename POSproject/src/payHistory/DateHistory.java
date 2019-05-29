@@ -1,15 +1,14 @@
 package payHistory;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DateHistory {
 
 	String date;
-	ArrayList<Product> product = new ArrayList<Product>();
+	HashMap<String,Product> productMap = new HashMap<>();
 
 	public DateHistory(String date) {
 		this.date = date;
-
 	}
 
 	
