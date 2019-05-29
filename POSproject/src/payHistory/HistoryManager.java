@@ -37,7 +37,7 @@ public class HistoryManager {
 	// 5.전체출력 메소드
 	public void showHistoryAll() {
 		System.out.println("****************************  [저장된 결제내역 전체를 출력합니다.]  ********************************");
-		System.out.println("No\t결제 시각\t\t결제 메뉴\t수량\t결제금액\t구매자\t결제번호\t결제 날짜");
+		System.out.println("No\t결제 시각\t\t결제 메뉴\t수량\t결제금액\t구매자\t\t결제번호\t결제 날짜");
 		System.out
 				.println("------------------------------------------------------------------------------------------");
 		if (arr.size() < 1) {
@@ -73,7 +73,7 @@ public class HistoryManager {
 	// 2. 일일 결제내역을 보여주는 메소드(검색해서)
 
 	public void showTitle() {
-		System.out.println("No\t결제 시각\t\t결제 메뉴\t수량\t결제금액\t구매자\t결제번호");
+		System.out.println("No\t결제 시각\t\t결제 메뉴\t수량\t결제금액\t구매자\t\t결제번호");
 		System.out
 				.println("------------------------------------------------------------------------------------------");
 

@@ -1,5 +1,6 @@
 package payHistory;
 
+import java.lang.reflect.Member;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -93,9 +94,10 @@ public class History {
 		
 	}
 	
-	//폰번호로 멤버이름을 찾는 메소드가 필요하다
-	public void phoneToName() {
-	
-	}
+//	//폰번호로 멤버이름을 찾는 메소드
+//	public String phoneToName(String phone) {
+//
+//		return name;
+//	}
 
 }
