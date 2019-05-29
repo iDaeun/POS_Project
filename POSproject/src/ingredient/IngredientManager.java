@@ -12,7 +12,7 @@ public class IngredientManager {
 	public IngredientManager() {
 		//시연을 위해 기본 재료 정보 3개 저장함
 		ingredientList.add(new IngredientInfo("김", 5, 30));
-		ingredientList.add(new IngredientInfo("쌀", 10, 30));
+		ingredientList.add(new IngredientInfo("쌀", 10, 40));
 		ingredientList.add(new IngredientInfo("단무지", 5, 30));
 	}
 
@@ -31,7 +31,6 @@ public class IngredientManager {
 					);
 			
 			System.out.print("원하시는 메뉴를 선택해주세요: ");
-
 			int choice = Util.scan.nextInt();
 			Util.scan.nextLine();
 			System.out.println();

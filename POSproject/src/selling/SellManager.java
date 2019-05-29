@@ -252,8 +252,8 @@ public class SellManager implements Util {
 			if (TABLE[i] != null) {
 				System.out.println((i + 1) + "번 테이블 주문내역");
 				TABLE[i].showInfo();
+				System.out.println("=================================");
 			}
 		}
-		System.out.println("=================================");
 	}
 }
