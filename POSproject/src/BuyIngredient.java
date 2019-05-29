@@ -35,7 +35,6 @@ public class BuyIngredient{
 		System.out.println("품목 : "+ingName);
 		System.out.println("원가 : "+ingPrice);
 		System.out.println("거래처 : "+name);
-		System.out.println("---------------------------------");
 	}
 	
 	
