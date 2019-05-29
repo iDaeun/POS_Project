@@ -18,12 +18,15 @@ public class HistoryManager {
 //	ArrayList<YearHistory> yearHistoryArr = new ArrayList<YearHistory>(); // 년도
 //	MonthHistory[] monthHistoryArr = new MonthHistory[12]; // 월
 //	DateHistory[] dateHistoryArr = new DateHistory[31]; // 일
+//	Iterator<String> itr = ks.iterator();
+	
 	HashMap<String, DateHistory> dailyMap = new HashMap<>();
 	Set<String> ks = dailyMap.keySet();
 
 	DateTimeFormatter f1 = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL); // 2019년 5월 27일 월요일
 	DateTimeFormatter f3 = DateTimeFormatter.ofPattern("yyyyMMdd"); // 20190527
 
+	// 0. 히스토리 객체 생성해서 배열에 넣는 메소드
 	public void insertHistory(int payNum, LocalDateTime payTime, String payItem, int payEa, long payAmount,
 			String memberId) {
 		History history = new History(payNum, payTime, payItem, payEa, payAmount, memberId);
@@ -77,13 +80,14 @@ public class HistoryManager {
 	};
 
 	public void showDayHistoryTitle(LocalDate date) {
-		System.out.println("******************************  [" + f1.format(date) + "의 결제내역]  *****************************");
-		
+		System.out.println(
+				"******************************  [" + f1.format(date) + "의 결제내역]  *****************************");
+
 		showTitle();
 	}
 
 	public void showMonthHistoryTitle(String yyyyMM) {
-		System.out.println("******************************  [" + yyyyMM + "의 상세 결제내역  ]******************************");		
+		System.out.println("******************************  [" + yyyyMM + "의 상세 결제내역  ]******************************");
 		showTitle();
 	}
 
@@ -111,55 +115,48 @@ public class HistoryManager {
 			System.out.println("총 매출액 :" + tot + ", " + "팔린 김밥 개수 : " + kimbobCnt);
 		}
 
-		System.out.println("******************************************************************************************");
+		System.out
+				.println("******************************************************************************************");
 		System.out.println();
 		System.out.println();
 	}
 
-	Iterator<String> itr = ks.iterator();
-
+	//미완된 기능
 	public void makeDailyHistory(String yyyyMMdd) {
 		// ArrayList<Product> pro = new ArrayList<Product>();
 		DateHistory dh;
 
 		// dailyMap.containsKey(yyyyMMdd)
-
 		if (dailyMap.get(yyyyMMdd) == null) {
 			dh = new DateHistory(yyyyMMdd);
+
 			for (int i = 0; i < arr.size(); i++) {
-				String item = arr.get(i).getPayItem();//결제내역에서 뽑아온 항목의 이름
-			
+				String item = arr.get(i).getPayItem();// 결제내역에서 뽑아온 항목의 이름
+
 				if (f3.format(arr.get(i).getPayTime()).equals(yyyyMMdd)) {
-					Product pro = new Product(yyyyMMdd, item, arr.get(i).getPayEa(),
-							arr.get(i).getPayAmount());
-					// 생성해서 넣었구
+					Product pro = new Product(yyyyMMdd, item, arr.get(i).getPayEa(), arr.get(i).getPayAmount());
 					dh.productMap.put(item, pro);
-					
+
+					// 생성해서 프로덕트 맵에 넣었다 아이템명, 프로덕트
+					if (dh.productMap.get(item).payItem.equals(item)) {
+						dh.productMap.get(item).totPayEa += arr.get(i).getPayEa();
+						dh.productMap.get(item).totPayEa += arr.get(i).getPayAmount();
+					}
+					// 특정날짜, 데일리 히스토리를 데일리맵에 넣었다
 					dailyMap.put(yyyyMMdd, dh);
-
-					// 증가시켜주면 된다
-
 				}
-
-				System.out.println(dh.productMap.get(item).payItem + "ㄷㄹㄷ ");
-				System.out.println(dh.productMap.get(item).totPayEa + "ㄷㄹㄷ ");
-				System.out.println(dh.productMap.get(item).totPayAmount + "ㄷㄹㄷ ");
-				
-//				System.out.println(arr.get(i).getPayEa() + "ㄷㄹㄷㄹ ");
-//				System.out.println(arr.get(i).getPayAmount() + "ㄷㄹ ");
-
+				System.out.println(dailyMap.get(yyyyMMdd).productMap.get(item).payItem);
 			}
-
 		}
+
 	}
 
 	public void showDayHistory() {
 		// 일별 결제내역
 		System.out.println("어떤 날짜의 결제 내역을 출력할까요?(숫자 8자리로 입력해주세요 ex.20190527)");
 
-		// 나중에 예외처리
 		String date = Util.keyboard.nextLine().replaceAll(" ", "");
-		// 너무 지저분한 것 같은데...parse 도전해보자
+		
 		int year = Integer.parseInt(date.substring(0, 4));
 		int month = Integer.parseInt(date.substring(4, 6));
 		int day = Integer.parseInt(date.substring(6, 8));
@@ -205,10 +202,6 @@ public class HistoryManager {
 
 		String yyyyMM = Util.keyboard.nextLine().replaceAll(" ", "");
 
-		// 안된거
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
-//		LocalDate localDate = LocalDate.parse(yyyyMM, formatter);
-//		System.out.println(localDate.getMonthValue());
 		showMonthHistoryAll(yyyyMM);
 	}
 
@@ -218,10 +211,7 @@ public class HistoryManager {
 		System.out.println("어떤 회원의 결제 내역을 출력할까요?");
 		String member = Util.keyboard.nextLine();
 
-		// 이거 처리해줘야하는데.. 일지하는 사람없을때...이터레이터???
-//		if (arr.size() < 1) {
-//			System.out.println("결제 내역이 없습니다.");
-//		} else {
+		
 		System.out.println(member + "님의 결제내역입니다");
 		showTitle();
 		int cnt = 0;
@@ -232,7 +222,6 @@ public class HistoryManager {
 			}
 
 		}
-//		}
 
 	}
 
@@ -242,13 +231,13 @@ public class HistoryManager {
 
 		System.out.println("=====================================  메뉴를 선택해주세요  ====================================");
 		System.out.println("1.오늘의 결제내역\t 2.일별 검색\t 3.월별 결제내역 검색\t 4.회원별 결제내역\t 5.모든 결제내역 보기");
-		// System.out.println("5. 인기메뉴");//이번주 인기메뉴, 이번달 인기메뉴
+		// System.out.println("인기메뉴");
 		System.out
 				.println("==========================================================================================");
 
 		int choice = Util.keyboard.nextInt();
 
-		Util.keyboard.nextLine(); // 현재 라인의 버퍼를 출력(clear)
+		Util.keyboard.nextLine(); 
 
 		return choice;
 	}
