@@ -10,6 +10,10 @@ public class MyPOS_Test implements Util {
 	public static void main(String[] args) {
 
 		while (true) {
+			for(int i=0; i<im.ingredientList.size(); i++) {
+				im.ingredientList.get(i).alarm();
+			}
+			System.out.println("-----------------------");
 			System.out.println("POS");
 			System.out.println("1. 재고, 2. 판매, 3. 메뉴관리, 4. 회원관리, 5. 거래처관리");
 

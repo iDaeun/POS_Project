@@ -59,7 +59,6 @@ public class IngredientInfo {
 			for(int i=0; i<SupplierManager.si.size(); i++) {
 				if(SupplierManager.si.get(i).getIngName().equals(name)) {
 					SupplierManager.si.get(i).showData();
-					System.out.println("-----------------------");
 				}
 			}
 		}
