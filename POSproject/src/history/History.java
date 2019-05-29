@@ -77,14 +77,15 @@ public class History {
 	public void showHistory(int i) {
 
 		System.out.print(i + "\t");
-		if (f2.format(payTime).length() >= 8) {
-			System.out.printf(f2.format(payTime) + "\t");
-		} else {
-			System.out.printf(f2.format(payTime) + "\t\t");
-		}
+
+		System.out.printf(f2.format(payTime) + "\t");
+		/*
+		 * if (f2.format(payTime).length() >= 8) { System.out.printf(f2.format(payTime)
+		 * + "\t"); } else { System.out.printf(f2.format(payTime) + "\t\t"); }
+		 */
 		System.out.print(payItem + "\t");
 		System.out.print(payEa + "개\t");
-		System.out.print(payAmount + "\t");
+		System.out.print(payAmount + "\t\t");
 		System.out.print(memberId + "\t");
 		// System.out.print(memberName+"\t");
 		System.out.print(payNum + "\t");

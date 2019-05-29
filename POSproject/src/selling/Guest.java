@@ -1,4 +1,5 @@
 package selling;
+
 import java.util.ArrayList;
 
 import menu.Menu;
@@ -21,7 +22,7 @@ public class Guest {
 
 		this.order = orderList;
 		foodCnt = new int[order.size()];
-		
+
 		for (int i = 0; i < order.size(); i++) {
 			totalPrice += order.get(i).getPrice() * order.get(i).getCnt();
 			foodCnt[i] = order.get(i).getCnt();
@@ -32,6 +33,10 @@ public class Guest {
 
 	public int getTotalPrice() {
 		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	void showInfo() {

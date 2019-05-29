@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import history.History;
 import history.HistoryManager;
+import member.MemberManager;
 import member.PointManager;
 import menu.Menu;
 import menu.MenuManager;
@@ -159,38 +160,65 @@ public class SellManager implements Util {
 		int tableNum = select - 1;
 		if (select < TABLE.length + 1 && select > 0) {
 			if (!(TABLE[tableNum] == null)) {
+				int totalPrice = TABLE[tableNum].getTotalPrice();
 				System.out.println(select + "번 테이블");
 				System.out.println("결제 금액 : " + TABLE[tableNum].getTotalPrice());
 				System.out.println("회원이야?");
 				System.out.println("1. 응, 2. 아니");
 				select = scan.nextInt();
 
+				scan.nextLine();
+
 				// 회원정보를 검색 후 포인트 적립 / 사용
 				switch (select) {
 				case 1:
-					int totalPrice = TABLE[tableNum].getTotalPrice();
+					String message = MemberManager.getManager().showPoint();
+					System.out.println(message);
+					if (message == "회원정보가 존재하지 않습니다.") {
+						System.out.println("가입하시겠습니까? 1.예 2.아니오 ");
+						select = scan.nextInt();
+						scan.nextLine();
 
-					System.out.println("포인트 사용할거야?");
-					System.out.println("1. 응, 2. 아니");
+						switch (select) { // 회원가입 여부에 대한 대답
+						case 1:
+							MemberManager.getManager().addMember();
+							PointManager.getManager().addPoint(totalPrice);
+							break;
 
+						case 2:
+							break;
+						}
+					} else {
+						System.out.println("1. 포인트 사용 | 2. 포인트 적립");
+						select = scan.nextInt();
+						scan.nextLine();
+						switch (select) {
+						case 1:
+							totalPrice = PointManager.getManager().usePoint(totalPrice);
+							TABLE[tableNum].setTotalPrice(totalPrice);
+							MyPOS.money += TABLE[tableNum].getTotalPrice();
+							break;
+						case 2:
+							PointManager.getManager().addPoint(totalPrice);
+							break;
+						}
+					}
+					break;
+
+				case 2:
+					System.out.println("회원가입 하시겠습니까?");
+					System.out.println("1. 응 | 2. 아니");
 					select = scan.nextInt();
-
-					switch (select) {
-					case 1:
-						PointManager.getManager().usePoint(totalPrice);
-						break;
-					case 2:
+					scan.nextLine();
+					if (select == 1) {
+						MemberManager.getManager().addMember();
+						PointManager.getManager().addPoint(totalPrice);
+						MyPOS.money += TABLE[tableNum].getTotalPrice();
+					} else if (select == 2) {
+						MyPOS.money += TABLE[tableNum].getTotalPrice();
 						break;
 					}
-					System.out.println("포인트 적립해줄게");
-					PointManager.getManager().addPoint(totalPrice);
-				case 2:
-					break;
 				}
-
-				MyPOS.money += TABLE[tableNum].getTotalPrice();
-				System.out.println("결제 완료");
-				System.out.println("잔고 : " + MyPOS.money);
 
 				/*
 				 * public History(int payNum, LocalDateTime payTime, String payItem, int payEa,
@@ -209,14 +237,13 @@ public class SellManager implements Util {
 					long payAmount = (TABLE[tableNum].foodCnt[i] * TABLE[tableNum].order.get(i).getPrice());
 
 					HistoryManager.insertHistory(TABLE[tableNum].payNum, LocalDateTime.now(),
-							TABLE[tableNum].order.get(i).getName(), TABLE[tableNum].order.get(i).getCnt(), payAmount,
+							TABLE[tableNum].order.get(i).getName(), TABLE[tableNum].foodCnt[i], payAmount,
 							"123");
 					;
 				}
 
 				// History history = new History(TABLE[select - 1].payNum, payTime, payItem,
 				// TABLE[select - 1]., payAmount, memberId)
-
 				System.out.println("결제 완료");
 				System.out.println("잔고 : " + MyPOS.money);
 				TABLE[tableNum] = null;

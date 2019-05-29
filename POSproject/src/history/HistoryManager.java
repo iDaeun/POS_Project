@@ -13,6 +13,22 @@ import util.Util;
 
 public class HistoryManager {
 
+	public HistoryManager() {
+		insertHistory(1, LocalDateTime.now().minusDays(1), "멸추김밥", 2, 6000, "01031251111");
+		insertHistory(2, LocalDateTime.now().minusDays(1).plusHours(1).plusMinutes(30), "메롱김밥", 1, 7000, "01011111111");
+		insertHistory(2, LocalDateTime.now().minusDays(1).plusHours(2).plusMinutes(30), "또잉김밥", 2, 11000,
+				"01011111111");
+		insertHistory(3, LocalDateTime.now().minusDays(1).plusHours(3).plusMinutes(30), "메롱김밥", 5, 35000,
+				"01012346554");
+		insertHistory(5, LocalDateTime.now().plusDays(1), "야채김밥", 9, 26000, "01033337777");
+		insertHistory(6, LocalDateTime.now().plusDays(2).plusHours(1).plusMinutes(30), "그냥김밥", 1, 3000, "01031251111");
+		insertHistory(7, LocalDateTime.now().plusMonths(1), "그냥김밥", 1, 3000, "01031251753");
+		insertHistory(8, LocalDateTime.now().plusMonths(1).plusDays(2).plusHours(1).plusMinutes(30), "먀아김밥", 5, 13000,
+				"01031251111");
+		insertHistory(9, LocalDateTime.now().plusMonths(1).plusDays(3).plusHours(10).plusMinutes(13), "피자김밥", 1, 3000,
+				"01031251753");
+	}
+
 	static ArrayList<History> arr = new ArrayList<History>();
 
 //	ArrayList<YearHistory> yearHistoryArr = new ArrayList<YearHistory>(); // 년도
@@ -37,7 +53,7 @@ public class HistoryManager {
 	// 5.전체출력 메소드
 	public void showHistoryAll() {
 		System.out.println("****************************  [저장된 결제내역 전체를 출력합니다.]  ********************************");
-		System.out.println("No\t결제 시각\t\t결제 메뉴\t수량\t결제금액\t구매자\t결제번호\t결제 날짜");
+		System.out.println("No\t결제 시각\t결제 메뉴\t수량\t결제금액\t구매자\t\t결제번호\t결제 날짜");
 		System.out
 				.println("------------------------------------------------------------------------------------------");
 		if (arr.size() < 1) {
@@ -73,7 +89,7 @@ public class HistoryManager {
 	// 2. 일일 결제내역을 보여주는 메소드(검색해서)
 
 	public void showTitle() {
-		System.out.println("No\t결제 시각\t\t결제 메뉴\t수량\t결제금액\t구매자\t결제번호");
+		System.out.println("No\t결제 시각\t결제 메뉴\t수량\t결제금액\t구매자\t\t결제번호");
 		System.out
 				.println("------------------------------------------------------------------------------------------");
 
@@ -227,17 +243,41 @@ public class HistoryManager {
 	// ================================================================
 
 	public int printMenu() {
+		while (true) {
+			System.out
+					.println("=====================================  메뉴를 선택해주세요  ====================================");
+			System.out.println("1.오늘의 결제내역\t 2.일별 검색\t 3.월별 결제내역 검색\t 4.회원별 결제내역\t 5.모든 결제내역 보기");
+			// System.out.println("인기메뉴");
+			System.out.println(
+					"==========================================================================================");
 
-		System.out.println("=====================================  메뉴를 선택해주세요  ====================================");
-		System.out.println("1.오늘의 결제내역\t 2.일별 검색\t 3.월별 결제내역 검색\t 4.회원별 결제내역\t 5.모든 결제내역 보기");
-		// System.out.println("인기메뉴");
-		System.out
-				.println("==========================================================================================");
+			int choice = Util.scan.nextInt();
 
-		int choice = Util.scan.nextInt();
+			Util.scan.nextLine();
+			switch (choice) {
+			case 1:
+				showTodayHistory();
+				break;
+			case 2:
+				showDayHistory();
+				break;
+			case 3:
+				showMonthHistory();
+				break;
+			case 4:
+				showMemberHistory();
+				break;
+			case 5:
+				showHistoryAll();
+				break;
+			case 6:
+				makeDailyHistory("20190528");
+				break;
 
-		Util.scan.nextLine();
-
-		return choice;
+			default:
+				break;
+			}
+		}
 	}
+
 }

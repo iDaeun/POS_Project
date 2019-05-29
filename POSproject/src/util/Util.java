@@ -18,8 +18,9 @@ public interface Util {
 	int SHOWMEMBERDATA = 4;
 	int SHOWALL = 5;
 	
+	
 	Scanner scan = new Scanner(System.in);
-	Guest[] TABLE = new Guest[3];
+	Guest[] TABLE = new Guest[5];
 	
 	
 }
