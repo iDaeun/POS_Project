@@ -21,17 +21,37 @@ public class SupplierBasicInfo extends BuyIngredient{
 	
 	public SupplierBasicInfo() {};
 	
+	void setName(String name) {
+		this.name = name;
+	}
+	
+	String getName() {
+		return this.name;
+	}
+	
+	void setPhoneNum(String num) {
+		this.phoneNum = num;
+	}
+	
+	String getPhoneNum() {
+		return this.name;
+	}
+	
+	void setAddress(String address) {
+		this.address = address;
+	}
+	
+	String getAddress() {
+		return this.address;
+	}
+	
+
+	
 	public void showData(){
 		System.out.println("거래처 이름: "+name);
 		System.out.println("거래처 번호: "+phoneNum);
 		System.out.println("거래처 주소: "+address);
 		System.out.println("거래처 품목: "+ingName);
 	}
-	
-	
-
-	
-	
-
 	
 }

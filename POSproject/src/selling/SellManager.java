@@ -1,7 +1,9 @@
 package selling;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import history.History;
+import history.HistoryManager;
 import member.PointManager;
 import menu.Menu;
 import menu.MenuManager;
@@ -203,13 +205,13 @@ public class SellManager implements Util {
 				for (int i = 0; i < TABLE[tableNum].order.size(); i++) {
 
 					// 히스토리 테스트용
-					History h = new History(TABLE[tableNum].payNum, LocalDateTime.now(),
-							TABLE[tableNum].order.get(i).getName(), TABLE[tableNum].order.get(i).getCnt(),
-							(TABLE[tableNum].foodCnt[i] * TABLE[tableNum].order.get(i).getPrice()), "김씨");
-					// System.out.println(TABLE[tableNum].order.get(i).name);
-					// System.out.println(TABLE[tableNum].foodCnt[i]);
-					// System.out.println((TABLE[tableNum].foodCnt[i] *
-					// TABLE[tableNum].order.get(i).price));
+
+					long payAmount = (TABLE[tableNum].foodCnt[i] * TABLE[tableNum].order.get(i).getPrice());
+
+					HistoryManager.insertHistory(TABLE[tableNum].payNum, LocalDateTime.now(),
+							TABLE[tableNum].order.get(i).getName(), TABLE[tableNum].order.get(i).getCnt(), payAmount,
+							"123");
+					;
 				}
 
 				// History history = new History(TABLE[select - 1].payNum, payTime, payItem,
@@ -225,7 +227,7 @@ public class SellManager implements Util {
 			}
 		}
 	}
-	
+
 	void showTable() {
 		System.out.println("=================================");
 		for (int i = 0; i < TABLE.length; i++) {
