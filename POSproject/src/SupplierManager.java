@@ -23,8 +23,8 @@ public class SupplierManager {
 	// 거래처관리 메뉴 출력.
 	public void printMenu() {
 		while(true) {
-			System.out.println("[거래처 관리]\n메뉴를 선택해주세요.");
-			System.out.println("1. 거래처 등록\n2. 거래처 삭제\n3. 거래처 수정\n4. 거래처 목록\n5.발주 \n6. 메인으로 돌아가기");
+			System.out.println("[거래처 관리]\n메뉴를 선택해주세요.\n");
+			System.out.println("1. 거래처 등록\n2. 거래처 삭제\n3. 거래처 수정\n4. 거래처 목록\n5. 발주하기 \n6. 메인으로 돌아가기");
 			
 			int choice = Util.sc.nextInt();
 			Util.sc.nextLine();
@@ -42,6 +42,7 @@ public class SupplierManager {
 				break;
 			case 4: 
 				showAllSupplier();
+				break;
 //			case 5:
 //				manageIngre();
 //				break;
@@ -71,9 +72,9 @@ public class SupplierManager {
 		System.out.println("거래처 전화번호를 입력하세요.");
 		phoneNum = Util.sc.nextLine();
 		
-		if(Integer.parseInt(phoneNum) == Integer.parseInt(itr.next().phoneNum)) {
-			System.out.println("중복된 값이 있습니다.");
-		}
+//		if(Integer.parseInt(phoneNum) == Integer.parseInt(itr.next().phoneNum)) {
+//			System.out.println("중복된 값이 있습니다.");
+//		}
 		
 		System.out.println("거래처 주소를 입력하세요.");
 		address = Util.sc.nextLine();
@@ -99,8 +100,12 @@ public class SupplierManager {
 			if(info.phoneNum.equals(num)) {
 				supInfo.remove(info);
 				System.out.println("삭제를 완료했습니다.\n");
+				return;
+			} else {
+				System.out.println("다시 검색해주세요.\n");
+				return;
+				
 			}
-			System.out.println("다시 검색해주세요.\n");
 		}	
 	
 	}
@@ -149,6 +154,7 @@ public class SupplierManager {
 						System.out.println("올바른 값을 넣어주세요.\n");
 				}
 			System.out.println("수정을 완료했습니다.\n");
+			break;
 			} else {
 				System.out.println("해당 정보를 가진 거래처가 존재하지 않습니다.\n");
 				return;
@@ -195,7 +201,7 @@ public class SupplierManager {
 			info.printIngredient(info.getName());
 		}
 		
-		System.out.println("재료 주문을 하시겠습니까?\n1. 네\2. 아니오(돌아가기)");
+		System.out.println("재료 주문을 하시겠습니까?\n1. 네\n2. 아니오(돌아가기)");
 		
 		int choice = Util.sc.nextInt();
 		Util.sc.nextLine();
@@ -205,10 +211,7 @@ public class SupplierManager {
 		} else {
 			return;
 		}
-		
-		
-		
-		
+
 		
 	}
 
@@ -219,7 +222,7 @@ public class SupplierManager {
 		int idx = -1;
 		
 		System.out.println("[발주 관리]");
-		System.out.println("발주할 재료의 이름을 입력하세요.\n");
+		System.out.println("발주할 재료의 이름을 입력하세요.");
 		String name = Util.sc.nextLine();
 		
 		
@@ -232,7 +235,7 @@ public class SupplierManager {
 		
 		
 		if(idx>0) {
-			System.out.println("주문 수량을 입력해주세요.");		
+			System.out.println("주문 수량을 입력해주세요.\n");		
 			
 			// 재료 수량 추가
 			num = Util.sc.nextInt();
