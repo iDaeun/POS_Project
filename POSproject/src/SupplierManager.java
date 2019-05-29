@@ -22,6 +22,7 @@ public class SupplierManager {
 	
 	// 거래처관리 메뉴 출력.
 	public void printMenu() {
+		System.out.println("=====================");
 		while(true) {
 			System.out.println("[거래처 관리]\n메뉴를 선택해주세요.\n");
 			System.out.println("1. 거래처 등록\n2. 거래처 삭제\n3. 거래처 수정\n4. 거래처 목록\n5. 발주하기 \n6. 메인으로 돌아가기");
@@ -166,7 +167,7 @@ public class SupplierManager {
 	// 거래처 현황 출력 기능
 	void showAllSupplier() {
 		Iterator<SupplierBasicInfo> itr = supInfo.iterator();
-		
+		System.out.println("===============================");
 		System.out.println("현재 거래처 현황입니다.\n");
 		
 		while(itr.hasNext()) {
@@ -180,6 +181,7 @@ public class SupplierManager {
 	
 	// 거래 품목 현황 기능
 	void manageIngre() {
+		System.out.println("=====================");
 		System.out.println("현재 거래하고 있는 품목 현황입니다.\n");
 		Iterator<SupplierBasicInfo> itr = supInfo.iterator();
 		
@@ -192,6 +194,7 @@ public class SupplierManager {
 
 	// 발주 기능
 	void showOrderIngredients() {
+		System.out.println("=====================");
 		Iterator<SupplierBasicInfo> itr = supInfo.iterator();
 		System.out.println("현재 거래하고 있는 품목 현황입니다.\n");
 		System.out.println("----------------------------");
@@ -216,6 +219,7 @@ public class SupplierManager {
 	}
 
 	void orderIngredient() {
+		System.out.println("=====================");
 		Iterator<SupplierBasicInfo> itr = supInfo.iterator();
 		
 		int num = 0;

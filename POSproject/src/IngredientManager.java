@@ -78,6 +78,7 @@ public class IngredientManager {
 
 	// 재료검색
 	void showInfo() {
+		System.out.println("");
 		System.out.println("검색할 재료 이름을 입력해주세요:");
 		String name = Util.sc.nextLine();
 
