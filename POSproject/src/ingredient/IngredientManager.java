@@ -11,9 +11,9 @@ public class IngredientManager {
 
 	public IngredientManager() {
 		//시연을 위해 기본 재료 정보 3개 저장함
-		ingredientList.add(new IngredientInfo("김", 10, 9));
-		ingredientList.add(new IngredientInfo("쌀", 10, 100));
-		ingredientList.add(new IngredientInfo("단무지", 10, 100));
+		ingredientList.add(new IngredientInfo("김", 5, 10));
+		ingredientList.add(new IngredientInfo("쌀", 5, 20));
+		ingredientList.add(new IngredientInfo("단무지", 10, 10));
 	}
 
 	// 재고관리 메뉴 출력

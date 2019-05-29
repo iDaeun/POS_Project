@@ -10,11 +10,11 @@ public class MenuManager {
 	public static ArrayList<Menu> MenuList = new ArrayList<Menu>();
 
 	public MenuManager() {
-		IngredientInfo ingre1 = new IngredientInfo("야채", 10, 2);
+		IngredientInfo ingre1 = new IngredientInfo("야채", 5, 10);
 		IngredientManager.ingredientList.add(ingre1);
 		Menu kimbab1 = new Menu("야채김밥", 3000, ingre1);
 
-		IngredientInfo ingre2 = new IngredientInfo("참치", 10, 2);
+		IngredientInfo ingre2 = new IngredientInfo("참치", 5, 10);
 		IngredientManager.ingredientList.add(ingre2);
 		Menu kimbab2 = new Menu("참치김밥", 3500, ingre2);
 
